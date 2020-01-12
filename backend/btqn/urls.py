@@ -1,4 +1,4 @@
-"""ikigai_okr URL Configuration
+"""btqn URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from graphene_django.views import GraphQLView
-from ikigai_okr.schema import schema
+from btqn.schema import schema
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [

@@ -21,6 +21,16 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+class Role(models.Model):
+    code = models.CharField(max_length= 50,default='000')
+    name = models.CharField(max_length=100, default='untitled')
+    description = models.CharField(max_length=255, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    permission = models.CharField(max_length=50,default='limited',null=True)
+    
+    def __str__(self):
+        return f'{self.code} {self.name}'
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
@@ -28,6 +38,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    role = models.ForeignKey(Role, related_name='users', on_delete=models.CASCADE, blank=True, null=True)
     
     objects = UserManager()
     USERNAME_FIELD = 'email'
+

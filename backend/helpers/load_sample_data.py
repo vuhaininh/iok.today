@@ -4,6 +4,8 @@ from personal_okr.models import Tag
 import random
 
 
+
+
 def create_sample_users():
     i = 1
     while i < 10:

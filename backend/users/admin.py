@@ -15,7 +15,7 @@ class UserAdmin(BaseUserAdmin):
             ),
         }),
         (_('Personal Info'), {
-            'fields': ('first_name', 'last_name', )
+            'fields': ('first_name', 'last_name','role' )
         }),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser',)
@@ -29,5 +29,7 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
-
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ('code','name','permission')
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Role,RoleAdmin)

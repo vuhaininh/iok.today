@@ -1,6 +1,6 @@
 import json
 from graphene_django.utils.testing import GraphQLTestCase
-from ikigai_okr.schema import schema
+from btqn.schema import schema
 from helpers.load_sample_data import load_sample_data, load_user_data, load_tag_data
 
 
