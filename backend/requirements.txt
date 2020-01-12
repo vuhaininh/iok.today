@@ -1,0 +1,11 @@
+Django
+psycopg2
+graphene_django
+flake8
+factory_boy
+django-cors-headers
+django-filter
+django-graphql-jwt
+graphene_django_cud
+faker
+djangorestframework
