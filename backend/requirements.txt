@@ -9,3 +9,4 @@ django-graphql-jwt
 graphene_django_cud
 faker
 djangorestframework
+django-model-utils

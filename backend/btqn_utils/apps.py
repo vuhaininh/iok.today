@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class IokUtilsConfig(AppConfig):
-    name = 'iok_utils'
+class BtqnUtilsConfig(AppConfig):
+    name = 'btqn_utils'

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
     PermissionsMixin
 from django.db import models
-
+from django.core.validators import validate_email
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -42,4 +42,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     objects = UserManager()
     USERNAME_FIELD = 'email'
+    
+    def save(self, *args, **kwargs):
+      
+        super().save(*args, **kwargs)  # Call the "real" save() method.
+        self.full_clean()
 

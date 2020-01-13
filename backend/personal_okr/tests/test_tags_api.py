@@ -1,7 +1,7 @@
 import json
 from graphene_django.utils.testing import GraphQLTestCase
 from btqn.schema import schema
-from helpers.load_sample_data import load_sample_data, load_user_data, load_tag_data
+from helpers.load_sample_data import load_all_data, load_user_data, load_tag_data
 
 
 class PublicTagApiTestCase(GraphQLTestCase):
@@ -25,7 +25,7 @@ class PrivateTagApiTestCase(GraphQLTestCase):
         response = self.query(
             '''
             query{
-                allTags{
+                tags{
                     edges{
                         node{
                             id
@@ -37,6 +37,5 @@ class PrivateTagApiTestCase(GraphQLTestCase):
             '''
         )
         content = json.loads(response.content)
-        print(content)
         # This validates the status code and if you get errors
         self.assertResponseNoErrors(response)
