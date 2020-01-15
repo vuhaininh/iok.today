@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 14e1a38776854e09907fdd12e22bcc10
+ * @relayHash f18bc3b10f5aaee4d25f55d58726a954
  */
 
 /* eslint-disable */
@@ -25,6 +25,7 @@ export type LoginUserMutationResponse = {|
       +id: string,
       +email: string,
     |},
+    +refreshToken: ?string,
   |}
 |};
 export type LoginUserMutation = {|
@@ -44,6 +45,7 @@ mutation LoginUserMutation(
       id
       email
     }
+    refreshToken
   }
 }
 */
@@ -104,6 +106,13 @@ v1 = [
             "storageKey": null
           }
         ]
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "refreshToken",
+        "args": null,
+        "storageKey": null
       }
     ]
   }
@@ -128,11 +137,11 @@ return {
     "operationKind": "mutation",
     "name": "LoginUserMutation",
     "id": null,
-    "text": "mutation LoginUserMutation(\n  $input: LogInMutationInput!\n) {\n  login(input: $input) {\n    token\n    user {\n      id\n      email\n    }\n  }\n}\n",
+    "text": "mutation LoginUserMutation(\n  $input: LogInMutationInput!\n) {\n  login(input: $input) {\n    token\n    user {\n      id\n      email\n    }\n    refreshToken\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '59f5aa39d630389b5dec1c56070db247';
+(node/*: any*/).hash = '00bb15c1a85c0d5ffa2fdcfdcaaac354';
 module.exports = node;

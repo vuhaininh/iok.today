@@ -23,4 +23,5 @@ mutation {
   tokenAuth(email: "test@iok.today", password: "thientai") {
     token
   }
-}
+
+manage.py graphql_schema 

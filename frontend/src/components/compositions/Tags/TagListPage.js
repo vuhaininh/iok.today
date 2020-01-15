@@ -10,6 +10,9 @@ const TagListPageQuery = graphql`
   }
 `;
 class TagListPage extends Component {
+  _refresh = () => {
+    RefreshTokenMutation();
+  };
   render() {
     return (
       <QueryRenderer
@@ -19,7 +22,13 @@ class TagListPage extends Component {
           if (error) {
             return <div>{error.message}</div>;
           } else if (props) {
-            return <TagList tags={props.tags} />;
+            return props.tags == null ? (
+              <div>No tag</div>
+            ) : (
+              <div>
+                <TagList tags={props.tags} />
+              </div>
+            );
           }
           return <div>Loading</div>;
         }}

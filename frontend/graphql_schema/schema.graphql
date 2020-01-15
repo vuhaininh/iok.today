@@ -125,6 +125,7 @@ type LogInMutationPayload {
   user: UserNode
   errors: [ErrorType]
   token: String
+  refreshToken: String
   clientMutationId: String
 }
 
@@ -269,6 +270,7 @@ type Query {
   """The ID of the object"""
   tag(id: ID!): TagNode
   tags(before: String, after: String, first: Int, last: Int, name: String): TagNodeConnection
+  myTags(before: String, after: String, first: Int, last: Int, name: String): TagNodeConnection
 
   """The ID of the object"""
   objective(id: ID!): ObjectiveNode

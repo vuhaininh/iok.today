@@ -9,6 +9,7 @@ const mutation = graphql`
         id
         email
       }
+      refreshToken
     }
   }
 `;
@@ -24,8 +25,10 @@ export default (email, password, callback) => {
       if (response.login != null) {
         const id = response.login.user.id;
         const token = response.login.token;
-        callback(id, token, null);
-      } else callback(null, null, errors[0].message);
+        const refreshToken = response.login.refreshToken;
+
+        callback(id, token, refreshToken, null);
+      } else callback(null, null, null, errors[0].message);
     },
     onError: err => {
       console.error(err);

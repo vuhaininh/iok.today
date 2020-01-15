@@ -1,11 +1,11 @@
-from graphene import relay, ObjectType
+from graphene import relay
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
-from graphene_django_cud.mutations import DjangoCreateMutation, DjangoPatchMutation, DjangoDeleteMutation
+from graphene_django_cud.mutations import DjangoCreateMutation, DjangoPatchMutation
 import graphene
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model, authenticate
-from graphql_jwt.shortcuts import get_token
+from graphql_jwt.shortcuts import get_token,  create_refresh_token
 from graphene_django.forms.mutation import DjangoModelFormMutation
 from django.forms import ModelForm
 
@@ -26,6 +26,7 @@ class LoginForm(ModelForm):
 class LogInMutation(DjangoModelFormMutation):
     token = graphene.String()
     user = graphene.Field(UserNode)
+    refresh_token = graphene.String()
 
     class Meta:
         form_class = LoginForm
@@ -42,7 +43,7 @@ class LogInMutation(DjangoModelFormMutation):
         if not user.is_active:
             # It seems your account has been disabled
             raise Exception('101')
-        return cls(user=user, token=get_token(user))
+        return cls(user=user, token=get_token(user), refresh_token=create_refresh_token(user))
 
 
 class LogOutMutation(graphene.Mutation):

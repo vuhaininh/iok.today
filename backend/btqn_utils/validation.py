@@ -5,7 +5,7 @@ from contextlib import contextmanager
 class ValidationErrorTestMixin(object):
 
     @contextmanager
-    def assertValidationErrors(self, *args,**kwargs):
+    def assertValidationErrors(self, *args, **kwargs):
         """
         Assert that a validation error is raised, containing all the specified
         fields, and only the specified fields.
