@@ -1,6 +1,7 @@
 export {
   getUserId,
   getToken,
+  getRefreshToken,
   setUserId,
   setToken,
   signOut,

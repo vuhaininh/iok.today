@@ -1,6 +1,13 @@
 {
   "language": "English",
   "select-language": "Change Language",
+  "side-navigation": {
+    "overview": "Overview",
+    "products": "Products",
+    "customers": "Customers",
+    "employees": "Employees",
+    "finance": "Finance"
+  },
   "login-title": "Follow our goals right now",
   "errors": {
     "invalid-login": "Please enter a correct email and password"
@@ -34,5 +41,24 @@
     "terms-of-service": "Terms of Service",
     "privacy": "Privacy",
     "contact-us": "Contact Us"
+  },
+  "products": {
+    "product-list": "Product List",
+    "category": "Category",
+    "code": "Product Code",
+    "name": "Product Name",
+    "listed-price": "Listed Price"
+  },
+  "categories": {
+    "name": "Category Name",
+    "code": "Category Code"
+  },
+  "table": {
+    "rows": "rows",
+    "search": "Search",
+    "first-page": "First Page",
+    "previous-page": "Previous Page",
+    "last-page": "Last Page",
+    "next-page": "Next Page"
   }
 }

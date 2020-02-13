@@ -7,7 +7,7 @@ import {
   EuiFieldText,
   EuiButton,
 } from '@elastic/eui';
-import CreateTagMutation from '../../../mutations/CreateTagMutation';
+import CreateTagMutation from './CreateTagMutation';
 import { getUserId } from '../../../utils';
 import { Link } from 'found';
 class CreateTag extends Component {

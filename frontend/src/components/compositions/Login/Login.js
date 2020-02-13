@@ -14,7 +14,7 @@ import {
 } from '@elastic/eui';
 import { Link } from 'found';
 import { saveUserData } from '../../../utils';
-import LoginUserMutation from '../../../mutations/LoginUserMutation';
+import LoginUserMutation from './LoginUserMutation';
 import { withRouter } from 'found';
 class Login extends Component {
   state = {
@@ -94,13 +94,6 @@ class Login extends Component {
                   </EuiText>
                 </EuiFlexItem>
               </EuiFlexGroup>
-              <EuiText size="m" className="mt4">
-                <span>{t('signup.call')}&nbsp;</span>
-
-                <Link to="/signup" activeClassName="active" exact>
-                  {t('signup.signup')}
-                </Link>
-              </EuiText>
             </span>
           </form>
         </EuiForm>

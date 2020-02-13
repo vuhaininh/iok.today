@@ -13,8 +13,8 @@ export default () => (
       exact
     >
       <EuiIcon type={iokLogo}></EuiIcon>
-      <span className=" rabbit black">Ikigai </span>
-      <span className=" rabbit black">OKR</span>
+      <span className=" rabbit gray">BT </span>
+      <span className=" rabbit gray">Quang Ninh</span>
     </Link>
   </div>
 );

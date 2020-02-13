@@ -18,7 +18,5 @@ export default props => (
       </EuiFlexItem>
       <EuiFlexItem grow={4}>{props.children}</EuiFlexItem>
     </EuiFlexGroup>
-
-    <Footer />
   </div>
 );

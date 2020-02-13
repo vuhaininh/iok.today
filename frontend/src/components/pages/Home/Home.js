@@ -1,23 +1,20 @@
 import React from 'react';
 import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
 import { HeaderHome } from '../../compositions/Header';
-import { getToken, getUserId } from '../../../utils';
-import { TagListPage } from '../../compositions/Tags';
 import './Home.scss';
+import { SideNavigation } from '../../compositions/SideNavigation';
+import Box from '@material-ui/core/Box';
 export default props => {
-  const fakeID = 'VXNlck5vZGU6MjU=';
   return (
     <div>
       <HeaderHome />
-      {getToken()} <br />
-      {getUserId()} <br />
-      <EuiFlexGroup
-        columns={2}
-        direction="row"
-        gutterSize="none"
-        className="entry__body"
-      >
-        <TagListPage />
+      <EuiFlexGroup columns={2} direction="row" gutterSize="none">
+        <EuiFlexItem grow={2}>
+          <SideNavigation />
+        </EuiFlexItem>
+        <EuiFlexItem grow={8}>
+          <Box mt={1}>{props.children}</Box>
+        </EuiFlexItem>
       </EuiFlexGroup>
     </div>
   );

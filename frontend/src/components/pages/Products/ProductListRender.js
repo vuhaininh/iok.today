@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { QueryRenderer, graphql } from 'react-relay';
 import environment from '../../../Environment';
-import TagList from './TagList';
-const TagListPageQuery = graphql`
-  query TagListPageQuery {
-    tags {
-      ...TagList_tags
+import ProductList from './ProductList';
+const ProductListRenderQuery = graphql`
+  query ProductListRenderQuery {
+    products {
+      ...ProductList_products
     }
   }
 `;
-class TagListPage extends Component {
+class ProductListRender extends Component {
   render() {
     return (
       <QueryRenderer
         environment={environment}
-        query={TagListPageQuery}
+        query={ProductListRenderQuery}
         render={({ error, props }) => {
           if (error) {
             return <div>{error.message}</div>;
           } else if (props) {
-            return props.tags == null ? (
-              <div>No tag</div>
+            return props.products == null ? (
+              <div>No Product</div>
             ) : (
               <div>
-                <TagList tags={props.tags} />
+                <ProductList products={props.products} />
               </div>
             );
           }
@@ -33,5 +33,4 @@ class TagListPage extends Component {
     );
   }
 }
-
-export default TagListPage;
+export default ProductListRender;

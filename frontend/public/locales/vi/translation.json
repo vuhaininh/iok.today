@@ -1,6 +1,13 @@
 {
   "language": "Tiếng Việt",
   "select-language": "Đổi ngôn ngữ",
+  "side-navigation": {
+    "overview": "Tổng quan",
+    "products": "Sản phẩm",
+    "customers": "Khách hàng",
+    "employees": "Nhân viên",
+    "finance": "Tài chính"
+  },
   "login-title": "Theo đuổi mục tiêu ngay đây",
   "errors": {
     "invalid-login": "Email hoặc mật khẩu không đúng"
@@ -34,5 +41,24 @@
     "terms-of-service": "Điều khoản dịch vụ",
     "privacy": "Quyền riêng tư",
     "contact-us": "Liên hệ chúng tôi"
+  },
+  "products": {
+    "product-list": "Danh sách sản phẩm",
+    "category": "Nhóm sản phẩm",
+    "code": "Mã sản phẩm",
+    "name": "Tên sản phẩm",
+    "listed-price": "Giá niêm yết"
+  },
+  "categories": {
+    "name": "Tên nhóm sản phẩm",
+    "code": "Mã nhóm sản phẩm"
+  },
+  "table": {
+    "rows": "dòng",
+    "search": "Tìm kiếm",
+    "first-page": "Trang đầu",
+    "previous-page": "Trang trước",
+    "last-page": "Trang cuối",
+    "next-page": "Trang sau"
   }
 }

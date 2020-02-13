@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ef91b64c891bf7b41ac26356ad1ac850
+ * @relayHash b1bf4c450f087b9ad2cf08c6daa5f907
  */
 
 /* eslint-disable */
@@ -9,27 +9,27 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type RefreshTokenMutationVariables = {|
+export type RevokeTokenMutationVariables = {|
   refreshToken: string
 |};
-export type RefreshTokenMutationResponse = {|
-  +refreshToken: ?{|
-    +token: ?string
+export type RevokeTokenMutationResponse = {|
+  +revokeToken: ?{|
+    +revoked: ?number
   |}
 |};
-export type RefreshTokenMutation = {|
-  variables: RefreshTokenMutationVariables,
-  response: RefreshTokenMutationResponse,
+export type RevokeTokenMutation = {|
+  variables: RevokeTokenMutationVariables,
+  response: RevokeTokenMutationResponse,
 |};
 */
 
 
 /*
-mutation RefreshTokenMutation(
+mutation RevokeTokenMutation(
   $refreshToken: String!
 ) {
-  refreshToken(refreshToken: $refreshToken) {
-    token
+  revokeToken(input: {refreshToken: $refreshToken}) {
+    revoked
   }
 }
 */
@@ -47,22 +47,28 @@ v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "refreshToken",
+    "name": "revokeToken",
     "storageKey": null,
     "args": [
       {
-        "kind": "Variable",
-        "name": "refreshToken",
-        "variableName": "refreshToken"
+        "kind": "ObjectValue",
+        "name": "input",
+        "fields": [
+          {
+            "kind": "Variable",
+            "name": "refreshToken",
+            "variableName": "refreshToken"
+          }
+        ]
       }
     ],
-    "concreteType": "Refresh",
+    "concreteType": "RevokePayload",
     "plural": false,
     "selections": [
       {
         "kind": "ScalarField",
         "alias": null,
-        "name": "token",
+        "name": "revoked",
         "args": null,
         "storageKey": null
       }
@@ -73,7 +79,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "RefreshTokenMutation",
+    "name": "RevokeTokenMutation",
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -81,19 +87,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "RefreshTokenMutation",
+    "name": "RevokeTokenMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
-    "name": "RefreshTokenMutation",
+    "name": "RevokeTokenMutation",
     "id": null,
-    "text": "mutation RefreshTokenMutation(\n  $refreshToken: String!\n) {\n  refreshToken(refreshToken: $refreshToken) {\n    token\n  }\n}\n",
+    "text": "mutation RevokeTokenMutation(\n  $refreshToken: String!\n) {\n  revokeToken(input: {refreshToken: $refreshToken}) {\n    revoked\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c30b1c41ed9423bcdbbef9918b2c4e96';
+(node/*: any*/).hash = '76df35bd91fc0eec108fa60ff7f32612';
 module.exports = node;

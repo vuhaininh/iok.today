@@ -2,40 +2,34 @@ import { makeRouteConfig, Route } from 'found';
 import { graphql } from 'react-relay';
 import { getUserId } from './utils';
 import React from 'react';
-import { TagList, CreateTag } from './components/compositions/Tags';
+import {
+  CreateTag,
+  TagListPage,
+} from './components/compositions/Tags';
 
 import { Entry } from './components/pages/Entry/';
 import { Login } from './components/compositions/Login';
 import { SignUp } from './components/compositions/SignUp';
 import { Home } from './components/pages/Home';
+import { ProductPage } from './components/pages/Products';
 import App from './App';
 
-const TagListQuery = graphql`
-  query routes_TagList_Query {
-    tags {
-      ...TagList_tags
-    }
-  }
-`;
 const userId = getUserId();
-const home = <Route Component={Home} />;
+const home = (
+  <Route Component={Home}>
+    <Route Component={TagListPage} />
+    <Route path="tags" Component={TagListPage} />
+    <Route path="create-tag" Component={CreateTag}></Route>
+    <Route path="products" Component={ProductPage}></Route>
+  </Route>
+);
 const entry = (
   <Route Component={Entry}>
     <Route Component={Login} />
-    <Route path="signup" Component={SignUp} />
   </Route>
 );
 export default makeRouteConfig(
   <Route path="/" Component={App}>
     {userId ? home : entry}
-    <Route
-      path="tags"
-      Component={TagList}
-      query={TagListQuery}
-      render={({ props }) =>
-        props ? <TagList tags={props.tags} /> : <div />
-      }
-    />
-    <Route path="create-tag" Component={CreateTag}></Route>
   </Route>,
 );

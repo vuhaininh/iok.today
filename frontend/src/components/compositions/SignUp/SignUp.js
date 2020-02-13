@@ -12,7 +12,7 @@ import {
   EuiFlexItem,
 } from '@elastic/eui';
 import { saveUserData } from '../../../utils';
-import CreateUserMutation from '../../../mutations/CreateUserMutation';
+import CreateUserMutation from './CreateUserMutation';
 import { withRouter } from 'found';
 class SignUp extends Component {
   constructor(props) {

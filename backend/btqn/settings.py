@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'helpers',
     'rest_framework',
     'corsheaders',
-    'btqn_utils'
+    'btqn_utils',
+    'products',
 ]
 CORS_ORIGIN_WHITELIST = [
     'http://0.0.0.0:3000',
@@ -69,8 +70,8 @@ GRAPHQL_JWT = {
     'JWT_ALLOW_ARGUMENT': True,
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
-    'JWT_EXPIRATION_DELTA': timedelta(minutes=0.3),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+    'JWT_EXPIRATION_DELTA': timedelta(minutes=60),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=36500),
 }
 AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',

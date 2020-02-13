@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { EuiButtonEmpty } from '@elastic/eui';
 import { withTranslation } from 'react-i18next';
 import { getUserId, signOut } from '../../../utils';
+import RevokeTokenMutation from './RevokeTokenMutation';
 import { withRouter } from 'found';
 class LogOut extends Component {
   render() {
@@ -14,6 +15,7 @@ class LogOut extends Component {
           <EuiButtonEmpty
             className="mt2"
             onClick={() => {
+              RevokeTokenMutation();
               signOut();
               this.props.router.replace('/');
               window.location.reload(true);

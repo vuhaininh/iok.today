@@ -1,3 +1,29 @@
+type CategoryNode implements Node {
+  """The ID of the object."""
+  id: ID!
+  code: String!
+  name: String!
+  isActive: Boolean!
+  products(before: String, after: String, first: Int, last: Int, code: String): ProductNodeConnection!
+}
+
+type CategoryNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [CategoryNodeEdge]!
+}
+
+"""A Relay edge containing a `CategoryNode` and its cursor."""
+type CategoryNodeEdge {
+  """The item at the end of the edge"""
+  node: CategoryNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 input CreateKeyResultInput {
   objective: ID!
   description: String!
@@ -22,6 +48,20 @@ input CreateObjectiveInput {
 
 type CreateObjectiveMutation {
   objective: ObjectiveNode
+}
+
+input CreateProductInput {
+  category: ID!
+  code: String!
+  name: String!
+  listedPrice: Float
+  attributes: String!
+  isActive: Boolean
+  orders: [ID]
+}
+
+type CreateProductMutation {
+  product: ProductNode
 }
 
 input CreateTagInput {
@@ -134,6 +174,8 @@ type LogOutMutation {
 }
 
 type Mutation {
+  createProduct(input: CreateProductInput!): CreateProductMutation
+  patchProduct(id: ID!, input: PatchProductInput!): PatchProductMutation
   createUser(input: CreateUserInput!): CreateUserMutation
   patchUser(id: ID!, input: PatchUserInput!): PatchUserMutation
   login(input: LogInMutationInput!): LogInMutationPayload
@@ -196,6 +238,29 @@ type ObtainJSONWebToken {
   refreshToken: String
 }
 
+type OrderNode implements Node {
+  """The ID of the object."""
+  id: ID!
+  product: ProductNode!
+}
+
+type OrderNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [OrderNodeEdge]!
+}
+
+"""A Relay edge containing a `OrderNode` and its cursor."""
+type OrderNodeEdge {
+  """The item at the end of the edge"""
+  node: OrderNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 """
 The Relay compliant `PageInfo` type, containing data necessary to paginate this connection.
 """
@@ -239,6 +304,20 @@ type PatchObjectiveMutation {
   objective: ObjectiveNode
 }
 
+input PatchProductInput {
+  category: ID
+  code: String
+  name: String
+  listedPrice: Float
+  attributes: String
+  isActive: Boolean
+  orders: [ID]
+}
+
+type PatchProductMutation {
+  product: ProductNode
+}
+
 input PatchTagInput {
   name: String
   user: ID
@@ -261,7 +340,48 @@ type PatchUserMutation {
   user: UserNode
 }
 
+type ProductNode implements Node {
+  """The ID of the object."""
+  id: ID!
+  category: CategoryNode!
+  code: String!
+  name: String!
+  listedPrice: Float!
+  attributes: String!
+  isActive: Boolean!
+  orders(before: String, after: String, first: Int, last: Int, id: ID): OrderNodeConnection!
+}
+
+type ProductNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [ProductNodeEdge]!
+}
+
+"""A Relay edge containing a `ProductNode` and its cursor."""
+type ProductNodeEdge {
+  """The item at the end of the edge"""
+  node: ProductNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 type Query {
+  """The ID of the object"""
+  product(id: ID!): ProductNode
+  products(before: String, after: String, first: Int, last: Int, code: String): ProductNodeConnection
+
+  """The ID of the object"""
+  category(id: ID!): CategoryNode
+  categories(before: String, after: String, first: Int, last: Int, code: String): CategoryNodeConnection
+
+  """The ID of the object"""
+  order(id: ID!): OrderNode
+  oders(before: String, after: String, first: Int, last: Int, id: ID): OrderNodeConnection
+
   """The ID of the object"""
   user(id: ID!): UserNode
   allUsers(before: String, after: String, first: Int, last: Int, id: ID, firstName: String, lastName: String, email: String): UserNodeConnection
