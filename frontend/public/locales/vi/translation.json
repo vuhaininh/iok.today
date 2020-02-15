@@ -64,5 +64,8 @@
   },
   "behaviours": {
     "add-new": "Thêm mới"
+  },
+  "error-messages": {
+    "duplicate-category-code": "Không thể tạo mã nhóm trùng nhau"
   }
 }

@@ -34,8 +34,8 @@ export default (input, callback) => {
       };
       AddEdgeToRoot(addEdge);
     },
-    onComplete: () => {
-      callback();
+    onCompleted: (response, errors) => {
+      callback(errors);
     },
     onError: err => console.error(err),
   });

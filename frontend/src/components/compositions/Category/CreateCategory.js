@@ -5,10 +5,12 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import Grid from '@material-ui/core/Grid';
 import CreateCategoryMutation from './CreateCategoryMutation';
+import { getErrorMessage } from '../../../utils/ErrorMessages';
 class CreateCategory extends Component {
   state = {
     code: '',
     name: '',
+    codeError: '',
   };
   render() {
     const { t } = this.props;
@@ -22,6 +24,10 @@ class CreateCategory extends Component {
             size="small"
             value={this.state.code}
             onChange={e => this.setState({ code: e.target.value })}
+            error={this.state.codeError !== ''}
+            helperText={
+              this.state.codeError === '' ? '' : this.state.codeError
+            }
           />
         </Grid>
         <Grid item xs={3}>
@@ -49,9 +55,15 @@ class CreateCategory extends Component {
   }
 
   _createCategory = () => {
-    CreateCategoryMutation(this.state, () =>
-      console.log('Mutation completed'),
-    );
+    CreateCategoryMutation(this.state, errors => {
+      this.setState({ codeError: '' });
+      if (errors != null) {
+        const { t } = this.props;
+        const message = getErrorMessage(t, errors);
+
+        this.setState({ codeError: message });
+      }
+    });
   };
 }
 export default withTranslation()(CreateCategory);

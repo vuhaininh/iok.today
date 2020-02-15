@@ -64,6 +64,9 @@
   },
   "behaviours": {
     "add-new": "Add New"
+  },
+  "error-messages": {
+    "duplicate-category-code": "Cannot create duplicate category code"
   }
 
 }

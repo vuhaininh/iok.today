@@ -8,15 +8,17 @@ export const AddEdgeToRoot = ({
   store,
 }) => {
   const payload = store.getRootField(mutation);
-  const returnNode = payload.getLinkedRecord(node);
-  const root = store.getRoot();
-  const conn = ConnectionHandler.getConnection(root, dataSet);
+  if (payload) {
+    const returnNode = payload.getLinkedRecord(node);
+    const root = store.getRoot();
+    const conn = ConnectionHandler.getConnection(root, dataSet);
 
-  const edge = ConnectionHandler.createEdge(
-    store,
-    conn,
-    returnNode,
-    edgeType,
-  );
-  ConnectionHandler.insertEdgeBefore(conn, edge);
+    const edge = ConnectionHandler.createEdge(
+      store,
+      conn,
+      returnNode,
+      edgeType,
+    );
+    ConnectionHandler.insertEdgeBefore(conn, edge);
+  }
 };
