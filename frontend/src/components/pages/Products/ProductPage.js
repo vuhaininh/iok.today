@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabPage } from '../../atoms/Tabs';
 
-import CategoryListRender from './CategoryListRender';
+import { CategoryManagement } from '../../compositions/Category';
 import ProductListRender from './ProductListRender';
 import { withRouter } from 'found';
 import { useTranslation } from 'react-i18next';
@@ -11,11 +11,11 @@ const ProductPage = props => {
   const tabItems = [
     {
       label: t('products.product-list'),
-      component: <ProductListRender />,
+      component: <CategoryManagement />,
     },
     {
       label: t('products.category'),
-      component: <CategoryListRender />,
+      component: <CategoryManagement />,
     },
   ];
 

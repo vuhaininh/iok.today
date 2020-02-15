@@ -9,7 +9,7 @@ import {
 } from '@elastic/eui';
 import CreateTagMutation from './CreateTagMutation';
 import { getUserId } from '../../../utils';
-import { Link } from 'found';
+
 class CreateTag extends Component {
   state = {
     name: ' ',
@@ -18,9 +18,6 @@ class CreateTag extends Component {
   render() {
     return (
       <div>
-        <Link to="/" activeClassName="active" exact>
-          Home
-        </Link>
         <EuiFlexGrid columns={2}>
           <EuiFlexItem>
             <EuiForm>

@@ -51,7 +51,8 @@
   },
   "categories": {
     "name": "Category Name",
-    "code": "Category Code"
+    "code": "Category Code",
+    "add": "Add New Category"
   },
   "table": {
     "rows": "rows",
@@ -60,5 +61,9 @@
     "previous-page": "Previous Page",
     "last-page": "Last Page",
     "next-page": "Next Page"
+  },
+  "behaviours": {
+    "add-new": "Add New"
   }
+
 }

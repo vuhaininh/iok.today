@@ -7,7 +7,7 @@ export default props => {
 
   const options = {
     pageSize: 10,
-    pageSizeOptions: [10, 20, 50, 100],
+    pageSizeOptions: [10, 20, 50, 100, 1000000],
     showTitle: false,
     sorting: true,
   };

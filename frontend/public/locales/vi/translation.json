@@ -51,7 +51,8 @@
   },
   "categories": {
     "name": "Tên nhóm sản phẩm",
-    "code": "Mã nhóm sản phẩm"
+    "code": "Mã nhóm sản phẩm",
+    "add": "Thêm nhóm mới"
   },
   "table": {
     "rows": "dòng",
@@ -60,5 +61,8 @@
     "previous-page": "Trang trước",
     "last-page": "Trang cuối",
     "next-page": "Trang sau"
+  },
+  "behaviours": {
+    "add-new": "Thêm mới"
   }
 }

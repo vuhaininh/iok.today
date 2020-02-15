@@ -6,6 +6,21 @@ from graphql_jwt.decorators import login_required
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django_cud.mutations import DjangoCreateMutation,\
     DjangoPatchMutation
+from django_filters import FilterSet, OrderingFilter
+
+
+class CategoryFilter(FilterSet):
+    class Meta:
+        model = Category
+        fields = ['code', 'name', 'created_at', 'updated_at']
+
+    order_by = OrderingFilter(
+        fields=(
+            ('created_at', 'created_at'),
+            ('updated_at', 'updated_at'),
+            ('code', 'code')
+        )
+    )
 
 
 class CategoryNode(DjangoObjectType):
@@ -32,6 +47,16 @@ class PatchProductMutation(DjangoPatchMutation):
         model = Product
 
 
+class CreateCategoryMutation(DjangoCreateMutation):
+    class Meta:
+        model = Category
+
+
+class PatchCategoryMutation(DjangoPatchMutation):
+    class Meta:
+        model = Category
+
+
 class OrderNode(DjangoObjectType):
     class Meta:
         model = Order
@@ -50,6 +75,10 @@ class Query(graphene.ObjectType):
     category = relay.Node.Field(CategoryNode)
     categories = DjangoFilterConnectionField(CategoryNode)
 
+    @login_required
+    def resolve_categories(self, info, **kwargs):
+        return Category.objects.all()
+
     order = relay.Node.Field(OrderNode)
     oders = DjangoFilterConnectionField(OrderNode)
 
@@ -57,3 +86,6 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.AbstractType):
     create_product = CreateProductMutation.Field()
     patch_product = PatchProductMutation.Field()
+
+    create_category = CreateCategoryMutation.Field()
+    patch_category = PatchCategoryMutation.Field()

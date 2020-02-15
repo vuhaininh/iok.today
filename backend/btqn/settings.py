@@ -65,6 +65,7 @@ GRAPHENE = {
     'SCHEMA_OUTPUT': 'data/schema.json',  # defaults to schema.json,
     # Defaults to None (displays all data on a single line)
     'SCHEMA_INDENT': 2,
+    'RELAY_CONNECTION_MAX_LIMIT': 2147483647,
 }
 GRAPHQL_JWT = {
     'JWT_ALLOW_ARGUMENT': True,

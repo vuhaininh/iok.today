@@ -29,17 +29,4 @@ class CategoryList extends Component {
     return <Table columns={columns} data={getData(categories)} />;
   }
 }
-export default withTranslation()(
-  createFragmentContainer(CategoryList, {
-    categories: graphql`
-      fragment CategoryList_categories on CategoryNodeConnection {
-        edges {
-          node {
-            code
-            name
-          }
-        }
-      }
-    `,
-  }),
-);
+export default withTranslation()(CategoryList);

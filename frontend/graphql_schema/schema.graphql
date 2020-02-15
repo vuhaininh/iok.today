@@ -4,6 +4,8 @@ type CategoryNode implements Node {
   code: String!
   name: String!
   isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   products(before: String, after: String, first: Int, last: Int, code: String): ProductNodeConnection!
 }
 
@@ -22,6 +24,17 @@ type CategoryNodeEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+input CreateCategoryInput {
+  code: String!
+  name: String!
+  isActive: Boolean
+  products: [ID]
+}
+
+type CreateCategoryMutation {
+  category: CategoryNode
 }
 
 input CreateKeyResultInput {
@@ -176,6 +189,8 @@ type LogOutMutation {
 type Mutation {
   createProduct(input: CreateProductInput!): CreateProductMutation
   patchProduct(id: ID!, input: PatchProductInput!): PatchProductMutation
+  createCategory(input: CreateCategoryInput!): CreateCategoryMutation
+  patchCategory(id: ID!, input: PatchCategoryInput!): PatchCategoryMutation
   createUser(input: CreateUserInput!): CreateUserMutation
   patchUser(id: ID!, input: PatchUserInput!): PatchUserMutation
   login(input: LogInMutationInput!): LogInMutationPayload
@@ -278,6 +293,19 @@ type PageInfo {
   endCursor: String
 }
 
+input PatchCategoryInput {
+  code: String
+  name: String
+  isActive: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  products: [ID]
+}
+
+type PatchCategoryMutation {
+  category: CategoryNode
+}
+
 input PatchKeyResultInput {
   objective: ID
   description: String
@@ -311,6 +339,8 @@ input PatchProductInput {
   listedPrice: Float
   attributes: String
   isActive: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
   orders: [ID]
 }
 
@@ -349,6 +379,8 @@ type ProductNode implements Node {
   listedPrice: Float!
   attributes: String!
   isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   orders(before: String, after: String, first: Int, last: Int, id: ID): OrderNodeConnection!
 }
 

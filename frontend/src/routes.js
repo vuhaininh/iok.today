@@ -9,7 +9,6 @@ import {
 
 import { Entry } from './components/pages/Entry/';
 import { Login } from './components/compositions/Login';
-import { SignUp } from './components/compositions/SignUp';
 import { Home } from './components/pages/Home';
 import { ProductPage } from './components/pages/Products';
 import App from './App';
