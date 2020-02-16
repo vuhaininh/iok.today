@@ -7,6 +7,7 @@ from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django_cud.mutations import DjangoCreateMutation,\
     DjangoPatchMutation
 from django_filters import FilterSet, OrderingFilter
+from helpers.constants import PERMISSIONS
 
 
 class CategoryFilter(FilterSet):
@@ -50,6 +51,7 @@ class PatchProductMutation(DjangoPatchMutation):
 class CreateCategoryMutation(DjangoCreateMutation):
     class Meta:
         model = Category
+        permissions = (PERMISSIONS["MNA"]["permission"], PERMISSIONS["ACT"]["permission"])
 
 
 class PatchCategoryMutation(DjangoPatchMutation):

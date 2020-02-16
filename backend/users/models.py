@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
     PermissionsMixin
 from django.db import models
+from django.contrib.auth.models import Permission
 
 
 class UserManager(BaseUserManager):
@@ -10,6 +11,7 @@ class UserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
+
         user.save(using=self._db)
         return user
 
@@ -27,7 +29,7 @@ class Role(models.Model):
     name = models.CharField(max_length=100, default='untitled')
     description = models.CharField(max_length=255, blank=True, null=True)
     is_active = models.BooleanField(default=True)
-    permission = models.CharField(max_length=50, default='limited', null=True)
+    permission = models.ForeignKey(Permission, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f'{self.code} {self.name}'
@@ -46,6 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     def save(self, *args, **kwargs):
-
         super().save(*args, **kwargs)  # Call the "real" save() method.
+        self.user_permissions.clear()
+        self.user_permissions.add(self.role.permission)
         self.full_clean()
