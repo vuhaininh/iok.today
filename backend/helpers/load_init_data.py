@@ -1,43 +1,6 @@
-from users.models import Role
+
 from products.models import Category
 from products.models import Product
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import Permission
-from helpers.constants import ROLES, PERMISSIONS
-
-
-def create_roles():
-    content_type = ContentType.objects.get_for_model(Role)
-    manage_all = Permission.objects.create(
-        codename=PERMISSIONS['MNA']["codename"],
-        name=PERMISSIONS['MNA']["name"],
-        content_type=content_type,
-    )
-
-    Role(code=ROLES["BGD"]["code"], name=ROLES["BGD"]["name"],
-         description=ROLES["BGD"]["description"],
-         permission=manage_all).save()
-
-    Role(code=ROLES["ADM"]["code"], name=ROLES["ADM"]["name"],
-         description=ROLES["ADM"]["description"],
-         permission=manage_all).save()
-
-    accountant = Permission.objects.create(
-        codename=PERMISSIONS['ACT']["codename"],
-        name=PERMISSIONS['ACT']["name"],
-        content_type=content_type,
-    )
-    Role(code=ROLES["KTA"]["code"], name=ROLES["KTA"]["name"],
-         description=ROLES["KTA"]["description"],
-         permission=accountant).save()
-    marketing = Permission.objects.create(
-        codename=PERMISSIONS['MKT']["codename"],
-        name=PERMISSIONS['MKT']["name"],
-        content_type=content_type,
-    )
-    Role(code=ROLES["MKT"]["code"], name=ROLES["MKT"]["name"],
-         description=ROLES["MKT"]["description"],
-         permission=marketing).save()
 
 
 def create_products():

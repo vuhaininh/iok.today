@@ -12,6 +12,9 @@ class CreateCategory extends Component {
     name: '',
     codeError: '',
   };
+  reset() {
+    this.setState({ code: '', name: '' });
+  }
   render() {
     const { t } = this.props;
 
@@ -63,6 +66,7 @@ class CreateCategory extends Component {
 
         this.setState({ codeError: message });
       }
+      this.reset();
     });
   };
 }

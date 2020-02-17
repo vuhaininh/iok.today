@@ -10,3 +10,4 @@ graphene_django_cud
 faker
 djangorestframework
 django-model-utils
+django-role-permissions

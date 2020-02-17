@@ -7,7 +7,9 @@ from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django_cud.mutations import DjangoCreateMutation,\
     DjangoPatchMutation
 from django_filters import FilterSet, OrderingFilter
-from helpers.constants import PERMISSIONS
+
+# from helpers.constants import PERMISSIONS
+from btqn_utils.decorators import has_role_decorator
 
 
 class CategoryFilter(FilterSet):
@@ -49,9 +51,15 @@ class PatchProductMutation(DjangoPatchMutation):
 
 
 class CreateCategoryMutation(DjangoCreateMutation):
+
     class Meta:
         model = Category
-        permissions = (PERMISSIONS["MNA"]["permission"], PERMISSIONS["ACT"]["permission"])
+
+    @classmethod
+    @login_required
+    @has_role_decorator(['accountant', 'admin', 'director'])
+    def mutate(cls, root, info, input):
+        return super().mutate(root, info, input)
 
 
 class PatchCategoryMutation(DjangoPatchMutation):

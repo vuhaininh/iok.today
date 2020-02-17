@@ -66,6 +66,7 @@
     "add-new": "Thêm mới"
   },
   "error-messages": {
-    "duplicate-category-code": "Không thể tạo mã nhóm trùng nhau"
+    "duplicate-category-code": "Không thể tạo mã nhóm trùng nhau",
+    "no-permission": "Bạn không được phân quyền thực hiện việc này"
   }
 }

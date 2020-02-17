@@ -3,6 +3,8 @@ from django.db import models
 
 class Category(models.Model):
     """Tag to be used for a objective"""
+    class Meta:
+        verbose_name_plural = "categories"
     code = models.CharField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
