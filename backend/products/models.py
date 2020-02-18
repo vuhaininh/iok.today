@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Category(models.Model):
@@ -13,6 +14,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        try:
+            self.full_clean()
+            super(Category, self).save(*args, **kwargs)  # Call the "real" save() method.
+        except ValidationError as e:
+            raise e
 
 
 class Product(models.Model):

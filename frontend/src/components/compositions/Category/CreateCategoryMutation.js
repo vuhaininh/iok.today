@@ -1,6 +1,5 @@
 import { commitMutation, graphql } from 'react-relay';
 import environment from '../../../Environment';
-import { ConnectionHandler } from 'relay-runtime';
 import { AddEdgeToRoot } from '../../../utils/Relay';
 const mutation = graphql`
   mutation CreateCategoryMutation($input: CreateCategoryInput!) {

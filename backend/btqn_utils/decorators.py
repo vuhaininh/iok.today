@@ -13,6 +13,6 @@ def has_role_decorator(roles):
                 for role in roles:
                     if has_role(user, role):
                         return func(cls, root, info, *args, **kwargs)
-            raise PermissionDenied("Your cannot perform this action using current role")
+            raise PermissionDenied("You cannot perform this action using current role")
         return wrapper
     return request_decorator

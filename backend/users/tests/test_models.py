@@ -4,14 +4,6 @@ from users import models
 from btqn_utils.validation import ValidationErrorTestMixin
 
 
-class ModelTests(TestCase):
-    def test_role_str(self):
-        """Test the role string representation"""
-        role = models.Role(code="BGD", name="Ban giám đốc",
-                           description='Quản lý', permission='manage_all')
-        self.assertEqual(str(role), f'{role.code} {role.name}')
-
-
 class InvalidUserTests(ValidationErrorTestMixin, TestCase):
     def _invalid_email(self, email):
         user = models.User(email=email, password="123456",
@@ -19,6 +11,7 @@ class InvalidUserTests(ValidationErrorTestMixin, TestCase):
         with self.assertValidationErrors(self, fields=['email'],
                                          messages=['Enter a valid email address.']):
             user.save()
+            self.assertEqual(user.id, None)
     """Enter blank Email address  """
 
     def test_blank_email(self):
@@ -27,6 +20,7 @@ class InvalidUserTests(ValidationErrorTestMixin, TestCase):
         with self.assertValidationErrors(self, fields=['email'],
                                          messages=['This field cannot be blank.']):
             user.save()
+            self.assertEqual(user.id, None)
 
     """Enter Invalid User Email address  """
 

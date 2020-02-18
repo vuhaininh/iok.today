@@ -3,7 +3,7 @@ from users.factories import UserFactory
 from personal_okr.models import Tag
 import random
 
-
+from products.models import Category
 
 
 def create_sample_users():
@@ -57,6 +57,11 @@ def load_objective_data():
 
 def load_key_result_data():
     create_sample_key_results()
+
+
+def load_categories_data():
+    Category(code="BTTP", name="Bê Tông Thương Phẩm").save()
+    Category(code="BOM", name="Bơm").save()
 
 
 def load_all_data():

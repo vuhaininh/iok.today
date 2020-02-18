@@ -67,7 +67,8 @@
   },
   "error-messages": {
     "duplicate-category-code": "Cannot create duplicate category code",
-    "no-permission": "You do not have permission to perform this action"
+    "no-permission": "You do not have permission to perform this action",
+    "no-blank": "Input value should not be empty"
   }
 
 }

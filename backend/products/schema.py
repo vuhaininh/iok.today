@@ -82,7 +82,6 @@ class Query(graphene.ObjectType):
     def resolve_products(self, info, **kwargs):
         return Product.objects.all()
 
-    category = relay.Node.Field(CategoryNode)
     categories = DjangoFilterConnectionField(CategoryNode)
 
     @login_required

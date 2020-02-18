@@ -67,6 +67,7 @@
   },
   "error-messages": {
     "duplicate-category-code": "Không thể tạo mã nhóm trùng nhau",
-    "no-permission": "Bạn không được phân quyền thực hiện việc này"
+    "no-permission": "Bạn không được phân quyền thực hiện việc này",
+    "no-blank": "Không được điền giá trị trống"
   }
 }
