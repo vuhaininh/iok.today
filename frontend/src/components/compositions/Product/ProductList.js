@@ -4,6 +4,8 @@ import { dateFormat } from '../../../utils/Formatter';
 import { withTranslation } from 'react-i18next';
 import { SelectCategory } from '../Category';
 import TextField from '@material-ui/core/TextField';
+import PatchProductMutation from './PatchProductMutation';
+
 class ProductList extends Component {
   state = {
     category: '',
@@ -71,6 +73,7 @@ class ProductList extends Component {
     const getData = products => {
       return products.edges.map(({ node }) => {
         const {
+          id,
           code,
           name,
           listedPrice,
@@ -80,6 +83,7 @@ class ProductList extends Component {
         } = node;
 
         return {
+          id,
           code,
           name,
           listedPrice,
@@ -102,7 +106,9 @@ class ProductList extends Component {
               else newData.category = oldData.category.id;
               category = '';
               delete newData.updatedAt;
-              console.log(newData);
+              const id = newData.id;
+              delete newData.id;
+              PatchProductMutation(id, newData, errors => {});
 
               resolve();
             }),

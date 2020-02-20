@@ -110,8 +110,7 @@ class CreateProduct extends Component {
   }
 
   _createProduct = () => {
-    console.log(this.state);
-
+ 
     CreateProductMutation(this.state, errors => {
       this.setState({ codeError: '' });
       if (errors != null) {
