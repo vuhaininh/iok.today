@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 352929edd5615b12327bf9f167d42fba
+ * @relayHash 3ac8189664ded98e74b2efdf262ccba8
  */
 
 /* eslint-disable */
@@ -9,10 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type CategoryListRenderQueryVariables = {|
+export type SelectCategoryRenderQueryVariables = {|
   MAX_RECORDS: number
 |};
-export type CategoryListRenderQueryResponse = {|
+export type SelectCategoryRenderQueryResponse = {|
   +categories: ?{|
     +edges: $ReadOnlyArray<?{|
       +node: ?{|
@@ -23,15 +23,15 @@ export type CategoryListRenderQueryResponse = {|
     |}>
   |}
 |};
-export type CategoryListRenderQuery = {|
-  variables: CategoryListRenderQueryVariables,
-  response: CategoryListRenderQueryResponse,
+export type SelectCategoryRenderQuery = {|
+  variables: SelectCategoryRenderQueryVariables,
+  response: SelectCategoryRenderQueryResponse,
 |};
 */
 
 
 /*
-query CategoryListRenderQuery(
+query SelectCategoryRenderQuery(
   $MAX_RECORDS: Int!
 ) {
   categories(first: $MAX_RECORDS) {
@@ -156,7 +156,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "CategoryListRenderQuery",
+    "name": "SelectCategoryRenderQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -175,7 +175,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "CategoryListRenderQuery",
+    "name": "SelectCategoryRenderQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
@@ -201,9 +201,9 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "CategoryListRenderQuery",
+    "name": "SelectCategoryRenderQuery",
     "id": null,
-    "text": "query CategoryListRenderQuery(\n  $MAX_RECORDS: Int!\n) {\n  categories(first: $MAX_RECORDS) {\n    edges {\n      node {\n        id\n        code\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+    "text": "query SelectCategoryRenderQuery(\n  $MAX_RECORDS: Int!\n) {\n  categories(first: $MAX_RECORDS) {\n    edges {\n      node {\n        id\n        code\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
     "metadata": {
       "connection": [
         {
@@ -220,5 +220,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '5a158f2995608a8f8d2d9d0ef09e33c6';
+(node/*: any*/).hash = 'f5685b162f53f04b282c3412498b33c4';
 module.exports = node;

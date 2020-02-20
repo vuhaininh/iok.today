@@ -5,6 +5,7 @@ const ComponentRenderer = (
   rendered,
   error,
   props,
+  parentProps,
 ) => {
   const { nullMessage, dataProperty } = rendered;
 
@@ -16,7 +17,7 @@ const ComponentRenderer = (
     return props[dataProperty] == null ? (
       <div>{nullMessage}</div>
     ) : (
-      <WrappedComponent {...dynamicProps} />
+      <WrappedComponent {...dynamicProps} {...parentProps} />
     );
   }
 

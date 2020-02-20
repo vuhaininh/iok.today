@@ -5,6 +5,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Box from '@material-ui/core/Box';
+
 import {
   LocalGroceryStore,
   PeopleAlt,
@@ -64,7 +66,9 @@ const SideNavigation = props => {
     });
   };
   return (
-    <List component="nav">{createSideNavItems(sideNavItems)}</List>
+    <Box>
+      <List component="nav">{createSideNavItems(sideNavItems)}</List>
+    </Box>
   );
 };
 

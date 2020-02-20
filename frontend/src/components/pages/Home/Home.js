@@ -1,21 +1,22 @@
 import React from 'react';
-import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
 import { HeaderHome } from '../../compositions/Header';
 import './Home.scss';
 import { SideNavigation } from '../../compositions/SideNavigation';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+
 export default props => {
   return (
     <div>
       <HeaderHome />
-      <EuiFlexGroup columns={2} direction="row" gutterSize="none">
-        <EuiFlexItem grow={2}>
+      <Grid container direction="row" justify="center">
+        <Grid item xs={3} sm={3}>
           <SideNavigation />
-        </EuiFlexItem>
-        <EuiFlexItem grow={8}>
+        </Grid>
+        <Grid item xs={9} sm={9}>
           <Box mt={1}>{props.children}</Box>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+        </Grid>
+      </Grid>
     </div>
   );
 };

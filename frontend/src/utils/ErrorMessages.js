@@ -14,5 +14,5 @@ export const getErrorMessage = (t, errors) => {
     )
   )
     return t('error-messages.no-permission');
-  return 'Get Error';
+  return t('error-messages.invalid-info');
 };

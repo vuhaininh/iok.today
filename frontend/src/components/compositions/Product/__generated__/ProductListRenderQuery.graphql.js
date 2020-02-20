@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 352929edd5615b12327bf9f167d42fba
+ * @relayHash c6431fec2ad03c037e2f3f4f0eb329cd
  */
 
 /* eslint-disable */
@@ -9,37 +9,53 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type CategoryListRenderQueryVariables = {|
+export type ProductListRenderQueryVariables = {|
   MAX_RECORDS: number
 |};
-export type CategoryListRenderQueryResponse = {|
-  +categories: ?{|
+export type ProductListRenderQueryResponse = {|
+  +products: ?{|
     +edges: $ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
         +code: string,
         +name: string,
+        +listedPrice: number,
+        +attributes: string,
+        +updatedAt: any,
+        +category: {|
+          +id: string,
+          +code: string,
+          +name: string,
+        |},
       |}
     |}>
   |}
 |};
-export type CategoryListRenderQuery = {|
-  variables: CategoryListRenderQueryVariables,
-  response: CategoryListRenderQueryResponse,
+export type ProductListRenderQuery = {|
+  variables: ProductListRenderQueryVariables,
+  response: ProductListRenderQueryResponse,
 |};
 */
 
 
 /*
-query CategoryListRenderQuery(
+query ProductListRenderQuery(
   $MAX_RECORDS: Int!
 ) {
-  categories(first: $MAX_RECORDS) {
+  products(first: $MAX_RECORDS) {
     edges {
       node {
         id
         code
         name
+        listedPrice
+        attributes
+        updatedAt
+        category {
+          id
+          code
+          name
+        }
         __typename
       }
       cursor
@@ -61,14 +77,35 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = [
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "code",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v4 = [
   {
     "kind": "LinkedField",
     "alias": null,
     "name": "edges",
     "storageKey": null,
     "args": null,
-    "concreteType": "CategoryNodeEdge",
+    "concreteType": "ProductNodeEdge",
     "plural": true,
     "selections": [
       {
@@ -77,29 +114,46 @@ v1 = [
         "name": "node",
         "storageKey": null,
         "args": null,
-        "concreteType": "CategoryNode",
+        "concreteType": "ProductNode",
         "plural": false,
         "selections": [
+          (v1/*: any*/),
+          (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "id",
+            "name": "listedPrice",
             "args": null,
             "storageKey": null
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "code",
+            "name": "attributes",
             "args": null,
             "storageKey": null
           },
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "name",
+            "name": "updatedAt",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "category",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "CategoryNode",
+            "plural": false,
+            "selections": [
+              (v1/*: any*/),
+              (v2/*: any*/),
+              (v3/*: any*/)
+            ]
           },
           {
             "kind": "ScalarField",
@@ -145,7 +199,7 @@ v1 = [
     ]
   }
 ],
-v2 = [
+v5 = [
   {
     "kind": "Variable",
     "name": "first",
@@ -156,54 +210,54 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "CategoryListRenderQuery",
+    "name": "ProductListRenderQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
-        "alias": "categories",
-        "name": "__CategoryList_categories_connection",
+        "alias": "products",
+        "name": "__ProductList_products_connection",
         "storageKey": null,
         "args": null,
-        "concreteType": "CategoryNodeConnection",
+        "concreteType": "ProductNodeConnection",
         "plural": false,
-        "selections": (v1/*: any*/)
+        "selections": (v4/*: any*/)
       }
     ]
   },
   "operation": {
     "kind": "Operation",
-    "name": "CategoryListRenderQuery",
+    "name": "ProductListRenderQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "categories",
+        "name": "products",
         "storageKey": null,
-        "args": (v2/*: any*/),
-        "concreteType": "CategoryNodeConnection",
+        "args": (v5/*: any*/),
+        "concreteType": "ProductNodeConnection",
         "plural": false,
-        "selections": (v1/*: any*/)
+        "selections": (v4/*: any*/)
       },
       {
         "kind": "LinkedHandle",
         "alias": null,
-        "name": "categories",
-        "args": (v2/*: any*/),
+        "name": "products",
+        "args": (v5/*: any*/),
         "handle": "connection",
-        "key": "CategoryList_categories",
+        "key": "ProductList_products",
         "filters": null
       }
     ]
   },
   "params": {
     "operationKind": "query",
-    "name": "CategoryListRenderQuery",
+    "name": "ProductListRenderQuery",
     "id": null,
-    "text": "query CategoryListRenderQuery(\n  $MAX_RECORDS: Int!\n) {\n  categories(first: $MAX_RECORDS) {\n    edges {\n      node {\n        id\n        code\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+    "text": "query ProductListRenderQuery(\n  $MAX_RECORDS: Int!\n) {\n  products(first: $MAX_RECORDS) {\n    edges {\n      node {\n        id\n        code\n        name\n        listedPrice\n        attributes\n        updatedAt\n        category {\n          id\n          code\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
     "metadata": {
       "connection": [
         {
@@ -211,7 +265,7 @@ return {
           "cursor": null,
           "direction": "forward",
           "path": [
-            "categories"
+            "products"
           ]
         }
       ]
@@ -220,5 +274,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '5a158f2995608a8f8d2d9d0ef09e33c6';
+(node/*: any*/).hash = '9535c6b77e91e02cd7cf511f53531b3e';
 module.exports = node;

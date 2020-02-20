@@ -8,9 +8,17 @@ from django.contrib.auth import get_user_model, authenticate
 from graphql_jwt.shortcuts import get_token,  create_refresh_token
 from graphene_django.forms.mutation import DjangoModelFormMutation
 from django.forms import ModelForm
+from django.contrib.auth.models import Group
+
+
+class GroupNode(DjangoObjectType):
+    class Meta:
+        model = Group
 
 
 class UserNode(DjangoObjectType):
+    group = graphene.Field(GroupNode)
+
     class Meta:
         model = get_user_model()
         filter_fields = ['id', 'first_name', 'last_name', 'email']

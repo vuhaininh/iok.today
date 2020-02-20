@@ -2,7 +2,7 @@ import React from 'react';
 import { TabPage } from '../../atoms/Tabs';
 
 import { CategoryManagement } from '../../compositions/Category';
-import ProductListRender from './ProductListRender';
+import { ProductManagement } from '../../compositions/Product';
 import { withRouter } from 'found';
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +11,7 @@ const ProductPage = props => {
   const tabItems = [
     {
       label: t('products.product-list'),
-      component: <CategoryManagement />,
+      component: <ProductManagement />,
     },
     {
       label: t('products.category'),
@@ -19,6 +19,6 @@ const ProductPage = props => {
     },
   ];
 
-  return <TabPage items={tabItems} />;
+  return <TabPage items={tabItems} className="ml3 mb3 mr2" />;
 };
 export default withRouter(ProductPage);

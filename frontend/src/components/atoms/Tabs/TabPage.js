@@ -3,8 +3,14 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
 import TabPanel from './TabPanel';
-const TabPage = props => {
+import classnames from 'classnames';
+
+const TabPage = ({ className, ...props }) => {
   const { items } = props;
+  const thisClass = classnames({
+    [className]: !!className,
+  });
+
   const renderTabs = items => {
     return items.map((item, index) => {
       return <Tab label={item.label} key={index} />;
@@ -25,7 +31,7 @@ const TabPage = props => {
     setValue(newValue);
   };
   return (
-    <Paper square>
+    <Paper elevation={3} square className={thisClass}>
       <Tabs
         indicatorColor="primary"
         textColor="primary"

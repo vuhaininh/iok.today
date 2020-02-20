@@ -47,7 +47,8 @@
     "category": "Category",
     "code": "Product Code",
     "name": "Product Name",
-    "listed-price": "Listed Price"
+    "listed-price": "Listed Price",
+    "attributes": "Attributes"
   },
   "categories": {
     "name": "Category Name",
@@ -68,7 +69,19 @@
   "error-messages": {
     "duplicate-category-code": "Cannot create duplicate category code",
     "no-permission": "You do not have permission to perform this action",
-    "no-blank": "Input value should not be empty"
+    "no-blank": "Input value should not be empty",
+    "invalid-info": "Enter valid data"
+  },
+  "key-code": {
+    "code": "Code",
+    "group": "Group",
+    "name": "Name",
+    "updated-at": "Updated At",
+    "date": "Date",
+    "price": "Price",
+    "actions": "Actions",
+    "empty": "",
+    "edit": "Edit"
   }
 
 }

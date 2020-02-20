@@ -47,11 +47,12 @@
     "category": "Nhóm sản phẩm",
     "code": "Mã sản phẩm",
     "name": "Tên sản phẩm",
-    "listed-price": "Giá niêm yết"
+    "listed-price": "Giá niêm yết",
+    "attributes": "Thuộc tính"
   },
   "categories": {
-    "name": "Tên nhóm sản phẩm",
-    "code": "Mã nhóm sản phẩm",
+    "name": "Tên nhóm ",
+    "code": "Mã nhóm",
     "add": "Thêm nhóm mới"
   },
   "table": {
@@ -68,6 +69,18 @@
   "error-messages": {
     "duplicate-category-code": "Không thể tạo mã nhóm trùng nhau",
     "no-permission": "Bạn không được phân quyền thực hiện việc này",
-    "no-blank": "Không được điền giá trị trống"
+    "no-blank": "Không được điền giá trị trống",
+    "invalid-info": "Cần điền đúng thông tin"
+  },
+  "key-code": {
+    "code": "Mã",
+    "group": "Nhóm",
+    "name": "Tên",
+    "updated-at": "Ngày cập nhật",
+    "date": "Ngày",
+    "price": "Giá",
+    "actions": "Thao tác",
+    "empty": "",
+    "edit": "Sửa"
   }
 }

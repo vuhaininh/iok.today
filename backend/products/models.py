@@ -29,7 +29,7 @@ class Product(models.Model):
     code = models.CharField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     listed_price = models.FloatField(default=0)
-    attributes = models.CharField(max_length=255, blank=True)
+    attributes = models.CharField(max_length=255, blank=True, default="No attribute")
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)

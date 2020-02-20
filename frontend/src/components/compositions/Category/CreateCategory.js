@@ -6,6 +6,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import Grid from '@material-ui/core/Grid';
 import CreateCategoryMutation from './CreateCategoryMutation';
 import { getErrorMessage } from '../../../utils/ErrorMessages';
+
 class CreateCategory extends Component {
   state = {
     code: '',
@@ -31,6 +32,7 @@ class CreateCategory extends Component {
             helperText={
               this.state.codeError === '' ? '' : this.state.codeError
             }
+            fullWidth
           />
         </Grid>
         <Grid item xs={3}>
@@ -40,6 +42,7 @@ class CreateCategory extends Component {
             size="small"
             value={this.state.name}
             onChange={e => this.setState({ name: e.target.value })}
+            fullWidth
           />
         </Grid>
         <Grid item xs={3}>
@@ -49,6 +52,7 @@ class CreateCategory extends Component {
             size="medium"
             startIcon={<SaveIcon />}
             onClick={() => this._createCategory()}
+            fullWidth
           >
             {t('behaviours.add-new')}
           </Button>

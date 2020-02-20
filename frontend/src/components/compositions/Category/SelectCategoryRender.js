@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { QueryRenderer, graphql } from 'react-relay';
 import environment from '../../../Environment';
-import CategoryList from './CategoryList';
+import SelectCategory from './SelectCategory';
 import { ParentComponentRenderer } from '../../atoms/ComponentRenderer';
 import { MAX_RECORDS } from '../../../utils/Constants';
-const CategoryListRenderQuery = graphql`
-  query CategoryListRenderQuery($MAX_RECORDS: Int!) {
+const SelectCategoryRenderQuery = graphql`
+  query SelectCategoryRenderQuery($MAX_RECORDS: Int!) {
     categories(first: $MAX_RECORDS)
       @connection(key: "CategoryList_categories") {
       edges {
@@ -18,12 +18,14 @@ const CategoryListRenderQuery = graphql`
     }
   }
 `;
-class CategoryListRender extends Component {
+class SelectCategoryRender extends Component {
   render() {
+    const parentProps = this.props;
+
     return (
       <QueryRenderer
         environment={environment}
-        query={CategoryListRenderQuery}
+        query={SelectCategoryRenderQuery}
         variables={{
           MAX_RECORDS: MAX_RECORDS,
         }}
@@ -34,14 +36,15 @@ class CategoryListRender extends Component {
           };
 
           return ParentComponentRenderer(
-            CategoryList,
+            SelectCategory,
             rendered,
             error,
             props,
+            parentProps,
           );
         }}
       />
     );
   }
 }
-export default CategoryListRender;
+export default SelectCategoryRender;

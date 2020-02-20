@@ -44,6 +44,12 @@ class CreateProductMutation(DjangoCreateMutation):
     class Meta:
         model = Product
 
+    @classmethod
+    @login_required
+    @has_role_decorator(['accountant', 'admin', 'director'])
+    def mutate(cls, root, info, input):
+        return super().mutate(root, info, input)
+
 
 class PatchProductMutation(DjangoPatchMutation):
     class Meta:
