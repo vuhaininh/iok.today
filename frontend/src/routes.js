@@ -1,6 +1,5 @@
 import { makeRouteConfig, Route } from 'found';
-import { graphql } from 'react-relay';
-import { getUserId } from './utils';
+import { getUser } from './utils';
 import React from 'react';
 import {
   CreateTag,
@@ -13,7 +12,7 @@ import { Home } from './components/pages/Home';
 import { ProductPage } from './components/pages/Products';
 import App from './App';
 
-const userId = getUserId();
+const user = getUser();
 const home = (
   <Route Component={Home}>
     <Route Component={TagListPage} />
@@ -29,6 +28,6 @@ const entry = (
 );
 export default makeRouteConfig(
   <Route path="/" Component={App}>
-    {userId ? home : entry}
+    {user ? home : entry}
   </Route>,
 );

@@ -1,9 +1,10 @@
 export {
-  getUserId,
+  getUser,
   getToken,
   getRefreshToken,
-  setUserId,
+  setUser,
   setToken,
   signOut,
   saveUserData,
 } from './LocalStorage';
+export { hasRoles } from './User';

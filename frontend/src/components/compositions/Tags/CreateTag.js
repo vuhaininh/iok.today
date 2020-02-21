@@ -8,12 +8,12 @@ import {
   EuiButton,
 } from '@elastic/eui';
 import CreateTagMutation from './CreateTagMutation';
-import { getUserId } from '../../../utils';
+import { getUser } from '../../../utils';
 
 class CreateTag extends Component {
   state = {
     name: ' ',
-    user: getUserId(),
+    user: getUser(),
   };
   render() {
     return (
@@ -50,7 +50,7 @@ class CreateTag extends Component {
 
   _createTag = () => {
     const { name, user } = this.state;
-    CreateTagMutation(name, user, () =>
+    CreateTagMutation(name, user.id, () =>
       console.log('Mutation completed'),
     );
   };

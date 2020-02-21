@@ -15,6 +15,7 @@ import {
 import { saveUserData } from '../../../utils';
 import LoginUserMutation from './LoginUserMutation';
 import { withRouter } from 'found';
+import { AppContext } from '../../../contexts/AppContext';
 class Login extends Component {
   state = {
     email: '',
@@ -110,9 +111,8 @@ class Login extends Component {
     LoginUserMutation(email, password, (response, errMessage) => {
       if (errMessage == null) {
         const { user, token, refreshToken } = response.login;
-        console.log(response.login);
 
-        saveUserData(user, token, refreshToken);
+        saveUserData(JSON.stringify(user), token, refreshToken);
 
         this._toggleError(false);
         window.location.reload(true);
@@ -122,5 +122,5 @@ class Login extends Component {
     });
   };
 }
-
+Login.contextType = AppContext;
 export default withTranslation()(withRouter(Login));

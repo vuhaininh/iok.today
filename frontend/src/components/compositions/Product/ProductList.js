@@ -9,10 +9,18 @@ import { ErrorPopup } from '../../atoms/ErrorPopup';
 import Box from '@material-ui/core/Box';
 import { getErrorMessage } from '../../../utils/ErrorMessages';
 import { AppContext } from '../../../contexts/AppContext';
+import { getUser, hasRoles } from '../../../utils';
+
 class ProductList extends Component {
   render() {
     const { products, t } = this.props;
+    const user = JSON.parse(getUser());
 
+    const canEdit = hasRoles(user, [
+      'accountant',
+      'admin',
+      'director',
+    ]);
     var category = '';
 
     const columns = [
@@ -110,28 +118,33 @@ class ProductList extends Component {
           columns={columns}
           data={getData(products)}
           columnIndex={-1}
-          editable={{
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve, reject) => {
-                if (category !== '') newData.category = category;
-                else newData.category = oldData.category.id;
-                category = '';
-                delete newData.updatedAt;
-                const id = newData.id;
-                delete newData.id;
-                PatchProductMutation(id, newData, errors => {
-                  if (errors != null) {
-                    const { t } = this.props;
-                    const message = getErrorMessage(t, errors);
-                    this.context.setErrorMessage(message);
-                    this.context.toggleError(true);
-                    this.forceUpdate();
-                  }
-                });
+          editable={
+            canEdit
+              ? {
+                  onRowUpdate: (newData, oldData) =>
+                    new Promise((resolve, reject) => {
+                      if (category !== '')
+                        newData.category = category;
+                      else newData.category = oldData.category.id;
+                      category = '';
+                      delete newData.updatedAt;
+                      const id = newData.id;
+                      delete newData.id;
+                      PatchProductMutation(id, newData, errors => {
+                        if (errors != null) {
+                          const { t } = this.props;
+                          const message = getErrorMessage(t, errors);
+                          this.context.setErrorMessage(message);
+                          this.context.toggleError(true);
+                          this.forceUpdate();
+                        }
+                      });
 
-                resolve();
-              }),
-          }}
+                      resolve();
+                    }),
+                }
+              : {}
+          }
         />
       </Box>
     );
