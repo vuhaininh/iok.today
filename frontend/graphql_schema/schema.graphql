@@ -68,7 +68,7 @@ input CreateProductInput {
   code: String!
   name: String!
   listedPrice: Float
-  attributes: String!
+  attributes: String
   isActive: Boolean
   orders: [ID]
 }
@@ -139,6 +139,16 @@ GraphQL scalar value that could be:
 String, Boolean, Int, Float, List or Object.
 """
 scalar GenericScalar
+
+type GroupNode {
+  id: ID!
+  name: String!
+
+  """
+  The groups this user belongs to. A user will get all permissions granted to each of their groups.
+  """
+  userSet(before: String, after: String, first: Int, last: Int, id: ID, firstName: String, lastName: String, email: String): UserNodeConnection!
+}
 
 type KeyResultNode implements Node {
   """The ID of the object."""
@@ -405,9 +415,6 @@ type Query {
   """The ID of the object"""
   product(id: ID!): ProductNode
   products(before: String, after: String, first: Int, last: Int, code: String): ProductNodeConnection
-
-  """The ID of the object"""
-  category(id: ID!): CategoryNode
   categories(before: String, after: String, first: Int, last: Int, code: String): CategoryNodeConnection
 
   """The ID of the object"""
@@ -485,6 +492,11 @@ type UserNode implements Node {
   Designates that this user has all permissions without explicitly assigning them.
   """
   isSuperuser: Boolean!
+
+  """
+  The groups this user belongs to. A user will get all permissions granted to each of their groups.
+  """
+  groups: [GroupNode!]!
   email: String!
   firstName: String!
   lastName: String!
@@ -492,6 +504,7 @@ type UserNode implements Node {
   isStaff: Boolean!
   tag(before: String, after: String, first: Int, last: Int, name: String): TagNodeConnection!
   objectives(before: String, after: String, first: Int, last: Int, description: String, description_Icontains: String, description_Istartswith: String): ObjectiveNodeConnection!
+  group: GroupNode
 }
 
 type UserNodeConnection {

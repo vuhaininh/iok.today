@@ -1,6 +1,6 @@
 import { commitMutation, graphql } from 'react-relay';
 import environment from '../../../Environment';
-
+import { defaultError } from '../../../utils/ErrorMessages';
 const mutation = graphql`
   mutation PatchProductMutation(
     $id: ID!
@@ -31,9 +31,9 @@ export default (id, input, callback) => {
   commitMutation(environment, {
     mutation,
     variables,
-    onCompleted: (response, errors) => {
-      callback(errors);
+    onCompleted: (response, errors) => callback(errors),
+    onError: err => {
+      callback(defaultError);
     },
-    onError: err => console.error(err),
   });
 };

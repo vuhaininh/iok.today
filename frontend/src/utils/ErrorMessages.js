@@ -16,3 +16,5 @@ export const getErrorMessage = (t, errors) => {
     return t('error-messages.no-permission');
   return t('error-messages.invalid-info');
 };
+
+export const defaultError = [{ message: 'invalid info ' }];

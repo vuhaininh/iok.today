@@ -10,10 +10,10 @@ export default props => {
     <div>
       <HeaderHome />
       <Grid container direction="row" justify="center">
-        <Grid item xs={3} sm={3}>
+        <Grid item xs={2} sm={2}>
           <SideNavigation />
         </Grid>
-        <Grid item xs={9} sm={9}>
+        <Grid item xs={10} sm={10}>
           <Box mt={1}>{props.children}</Box>
         </Grid>
       </Grid>

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5cd13c9de523fb4a7c1333ba305ed24f
+ * @relayHash c4b2cd16da95ffdf314522d3446adef9
  */
 
 /* eslint-disable */
@@ -14,7 +14,7 @@ export type CreateProductInput = {|
   code: string,
   name: string,
   listedPrice?: ?number,
-  attributes: string,
+  attributes?: ?string,
   isActive?: ?boolean,
   orders?: ?$ReadOnlyArray<?string>,
 |};

@@ -12,7 +12,6 @@ import {
   EuiFlexItem,
   EuiLink,
 } from '@elastic/eui';
-import { Link } from 'found';
 import { saveUserData } from '../../../utils';
 import LoginUserMutation from './LoginUserMutation';
 import { withRouter } from 'found';
@@ -108,20 +107,19 @@ class Login extends Component {
   _login = () => {
     const { email, password } = this.state;
 
-    LoginUserMutation(
-      email,
-      password,
-      (id, token, refreshToken, errMessage) => {
-        if (errMessage == null) {
-          saveUserData(id, token, refreshToken);
+    LoginUserMutation(email, password, (response, errMessage) => {
+      if (errMessage == null) {
+        const { user, token, refreshToken } = response.login;
+        console.log(response.login);
 
-          this._toggleError(false);
-          window.location.reload(true);
-        } else {
-          this._toggleError(true);
-        }
-      },
-    );
+        saveUserData(user, token, refreshToken);
+
+        this._toggleError(false);
+        window.location.reload(true);
+      } else {
+        this._toggleError(true);
+      }
+    });
   };
 }
 

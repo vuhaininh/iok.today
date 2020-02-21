@@ -70,7 +70,8 @@
     "duplicate-category-code": "Cannot create duplicate category code",
     "no-permission": "You do not have permission to perform this action",
     "no-blank": "Input value should not be empty",
-    "invalid-info": "Enter valid data"
+    "invalid-info": "Enter valid data",
+    "invalid-actions": "There is error caused by invalid action!"
   },
   "key-code": {
     "code": "Code",
@@ -81,7 +82,8 @@
     "price": "Price",
     "actions": "Actions",
     "empty": "",
-    "edit": "Edit"
+    "edit": "Edit",
+    "ok": "Ok"
   }
 
 }

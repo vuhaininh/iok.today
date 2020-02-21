@@ -58,7 +58,9 @@ const SideNavigation = props => {
             selected={selectedIndex === index}
             onClick={event => handleListItemClick(event, index)}
           >
-            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemIcon className="minWidth3">
+              {item.icon}
+            </ListItemIcon>
             <ListItemText primary={item.key} />
           </ListItem>
         </Link>

@@ -7,22 +7,23 @@ import Grid from '@material-ui/core/Grid';
 import CreateProductMutation from './CreateProductMutation';
 import Box from '@material-ui/core/Box';
 import { getErrorMessage } from '../../../utils/ErrorMessages';
+import { ErrorPopup } from '../../atoms/ErrorPopup';
+import { AppContext } from '../../../contexts/AppContext';
 
 import { SelectCategory } from '../Category';
 class CreateProduct extends Component {
   state = {
     code: '',
     name: '',
-    price: 0,
+    price: '',
     attributes: '',
     category: '',
-    codeError: '',
   };
   reset() {
     this.setState({
       code: '',
       name: '',
-      price: 0,
+      price: '',
       attributes: '',
     });
   }
@@ -31,6 +32,14 @@ class CreateProduct extends Component {
 
     return (
       <Box>
+        <ErrorPopup
+          isOpen={this.context.openError}
+          handleClose={() => {
+            this.context.toggleError(false);
+            this.forceUpdate();
+          }}
+          message={this.context.errorMessage}
+        />
         <Grid container justify="space-evenly" className="mt4 mb4">
           <Grid item xs={3}>
             <TextField
@@ -39,7 +48,6 @@ class CreateProduct extends Component {
               size="small"
               value={this.state.code}
               onChange={e => this.setState({ code: e.target.value })}
-              error={this.state.codeError !== ''}
               helperText={
                 this.state.codeError === ''
                   ? ''
@@ -110,17 +118,18 @@ class CreateProduct extends Component {
   }
 
   _createProduct = () => {
- 
     CreateProductMutation(this.state, errors => {
-      this.setState({ codeError: '' });
       if (errors != null) {
         const { t } = this.props;
         const message = getErrorMessage(t, errors);
-
-        this.setState({ codeError: message });
+        this.context.setErrorMessage(message);
+        this.context.toggleError(true);
+        this.forceUpdate();
       }
       this.reset();
     });
   };
 }
+CreateProduct.contextType = AppContext;
+
 export default withTranslation()(CreateProduct);

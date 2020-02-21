@@ -6,11 +6,14 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(fab, far, fas);
+import { AppContext, initialState } from './contexts/AppContext';
 
 function App({ children }) {
   return (
     <Suspense fallback="loading">
-      <div>{children}</div>
+      <AppContext.Provider value={initialState}>
+        <div>{children}</div>;
+      </AppContext.Provider>
     </Suspense>
   );
 }

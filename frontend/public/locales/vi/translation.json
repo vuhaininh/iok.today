@@ -70,7 +70,8 @@
     "duplicate-category-code": "Không thể tạo mã nhóm trùng nhau",
     "no-permission": "Bạn không được phân quyền thực hiện việc này",
     "no-blank": "Không được điền giá trị trống",
-    "invalid-info": "Cần điền đúng thông tin"
+    "invalid-info": "Cần điền đúng thông tin, kiểm tra các định dạng đã nhập",
+    "invalid-actions": "Có lỗi xảy ra do thao tác không đúng!"
   },
   "key-code": {
     "code": "Mã",
@@ -81,6 +82,7 @@
     "price": "Giá",
     "actions": "Thao tác",
     "empty": "",
-    "edit": "Sửa"
+    "edit": "Sửa",
+    "ok": "Ok"
   }
 }

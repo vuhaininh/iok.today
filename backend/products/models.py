@@ -17,6 +17,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         try:
+            self.code = self.code.upper()
             self.full_clean()
             super(Category, self).save(*args, **kwargs)  # Call the "real" save() method.
         except ValidationError as e:
@@ -36,6 +37,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        try:
+            self.code = self.code.upper()
+            self.full_clean()
+            super(Product, self).save(*args, **kwargs)  # Call the "real" save() method.
+        except ValidationError as e:
+            raise e
 
 
 class Order(models.Model):

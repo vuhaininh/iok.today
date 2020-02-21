@@ -1,6 +1,7 @@
 import { commitMutation, graphql } from 'react-relay';
 import environment from '../../../Environment';
 import { AddEdgeToRoot } from '../../../utils/Relay';
+import { defaultError } from '../../../utils/ErrorMessages';
 const mutation = graphql`
   mutation CreateProductMutation($input: CreateProductInput!) {
     createProduct(input: $input) {
@@ -30,7 +31,6 @@ export default (input, callback) => {
       category,
       attributes,
     },
-    
   };
   commitMutation(environment, {
     mutation,
@@ -48,6 +48,8 @@ export default (input, callback) => {
     onCompleted: (response, errors) => {
       callback(errors);
     },
-    onError: err => console.error(err),
+    onError: err => {
+      callback(defaultError);
+    },
   });
 };

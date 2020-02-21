@@ -36,6 +36,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def save(self, *args, **kwargs):
         try:
+            self.email = self.email.lower()
+            print(self.email)
             self.full_clean()
             super(User, self).save(*args, **kwargs)  # Call the "real" save() method.
         except ValidationError as e:

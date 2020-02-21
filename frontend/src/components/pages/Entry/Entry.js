@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
 import Statement from '../../atoms/Statement/Statement';
 import { HeaderEntry } from '../../compositions/Header';
-import { Footer } from '../../atoms/Footer';
+
 import './Entry.scss';
 export default props => (
   <div>

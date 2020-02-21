@@ -1,0 +1,9 @@
+@each $width in $widths {
+    $index: index($widths, $width);
+
+    /* Padding */
+    .minWidth#{$index} {
+        min-width: $width !important;
+    }
+
+}

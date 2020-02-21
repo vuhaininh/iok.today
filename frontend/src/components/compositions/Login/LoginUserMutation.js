@@ -8,6 +8,9 @@ const mutation = graphql`
       user {
         id
         email
+        groups {
+          name
+        }
       }
       refreshToken
     }
@@ -23,12 +26,8 @@ export default (email, password, callback) => {
     variables,
     onCompleted: (response, errors) => {
       if (response.login != null) {
-        const id = response.login.user.id;
-        const token = response.login.token;
-        const refreshToken = response.login.refreshToken;
-
-        callback(id, token, refreshToken, null);
-      } else callback(null, null, null, errors[0].message);
+        callback(response, null);
+      } else callback(null, errors[0].message);
     },
     onError: err => {
       console.error(err);
