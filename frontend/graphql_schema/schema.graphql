@@ -91,8 +91,6 @@ type CreateTagMutation {
 input CreateUserInput {
   password: String!
   email: String!
-  firstName: String!
-  lastName: String!
 }
 
 type CreateUserMutation {
@@ -147,7 +145,7 @@ type GroupNode {
   """
   The groups this user belongs to. A user will get all permissions granted to each of their groups.
   """
-  userSet(before: String, after: String, first: Int, last: Int, id: ID, firstName: String, lastName: String, email: String): UserNodeConnection!
+  userSet(before: String, after: String, first: Int, last: Int, id: ID, email: String): UserNodeConnection!
 }
 
 type KeyResultNode implements Node {
@@ -372,8 +370,6 @@ type PatchTagMutation {
 input PatchUserInput {
   password: String
   email: String
-  firstName: String
-  lastName: String
 }
 
 type PatchUserMutation {
@@ -412,8 +408,7 @@ type ProductNodeEdge {
 }
 
 type Query {
-  """The ID of the object"""
-  product(id: ID!): ProductNode
+  staffProfiles(before: String, after: String, first: Int, last: Int, id: ID): StaffProfileNodeConnection
   products(before: String, after: String, first: Int, last: Int, code: String): ProductNodeConnection
   categories(before: String, after: String, first: Int, last: Int, code: String): CategoryNodeConnection
 
@@ -423,7 +418,7 @@ type Query {
 
   """The ID of the object"""
   user(id: ID!): UserNode
-  allUsers(before: String, after: String, first: Int, last: Int, id: ID, firstName: String, lastName: String, email: String): UserNodeConnection
+  allUsers(before: String, after: String, first: Int, last: Int, id: ID, email: String): UserNodeConnection
   me: UserNode
 
   """The ID of the object"""
@@ -454,6 +449,37 @@ input RevokeInput {
 type RevokePayload {
   revoked: Int
   clientMutationId: String
+}
+
+type StaffProfileNode implements Node {
+  """The ID of the object."""
+  id: ID!
+  firstName: String!
+  lastName: String!
+  mobile: String!
+  address: String!
+  position: String!
+  liability: Float!
+  liabilityLimit: Float!
+  dob: Date!
+  user: UserNode!
+}
+
+type StaffProfileNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [StaffProfileNodeEdge]!
+}
+
+"""A Relay edge containing a `StaffProfileNode` and its cursor."""
+type StaffProfileNodeEdge {
+  """The item at the end of the edge"""
+  node: StaffProfileNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 type TagNode implements Node {
@@ -498,12 +524,11 @@ type UserNode implements Node {
   """
   groups: [GroupNode!]!
   email: String!
-  firstName: String!
-  lastName: String!
   isActive: Boolean!
   isStaff: Boolean!
   tag(before: String, after: String, first: Int, last: Int, name: String): TagNodeConnection!
   objectives(before: String, after: String, first: Int, last: Int, description: String, description_Icontains: String, description_Istartswith: String): ObjectiveNodeConnection!
+  profile(before: String, after: String, first: Int, last: Int, id: ID): StaffProfileNodeConnection!
   group: GroupNode
 }
 

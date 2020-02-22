@@ -5,7 +5,7 @@
     "overview": "Overview",
     "products": "Products",
     "customers": "Customers",
-    "employees": "Employees",
+    "staff": "Staff",
     "finance": "Finance",
     "settings": "Settings"
   },
@@ -72,7 +72,8 @@
     "no-permission": "You do not have permission to perform this action",
     "no-blank": "Input value should not be empty",
     "invalid-info": "Enter valid data",
-    "invalid-actions": "There is error caused by invalid action!"
+    "invalid-actions": "There is error caused by invalid action!",
+    "same-passwords": "Passwords should be the same"
   },
   "success-messages": {
     "success": "Success!",
@@ -95,6 +96,7 @@
     "password": "Password",
     "update-password": "Update password",
     "confirm-password": "Confirm password"
+
   }
 
 }

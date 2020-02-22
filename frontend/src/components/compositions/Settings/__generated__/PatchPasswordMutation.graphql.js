@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash be352d0565222f1c18cee9040659adef
+ * @relayHash 018d5b7b1da674238f02dfe145230b71
  */
 
 /* eslint-disable */
@@ -12,8 +12,6 @@ import type { ConcreteRequest } from 'relay-runtime';
 export type PatchUserInput = {|
   password?: ?string,
   email?: ?string,
-  firstName?: ?string,
-  lastName?: ?string,
 |};
 export type PatchPasswordMutationVariables = {|
   id: string,

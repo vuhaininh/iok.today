@@ -5,7 +5,7 @@ from users import models
 from django.contrib.auth.models import Permission
 from rolepermissions import roles
 from django.contrib.auth.models import Group
-
+from profiles.models import StaffProfile
 UserModel = auth.get_user_model()
 
 
@@ -13,7 +13,12 @@ class RolePermissionsUserAdminMixin(object):
     pass
 
 
+class ProfileAdminInline(admin.TabularInline):
+    model = StaffProfile
+
+
 class UserAdmin(BaseUserAdmin):
+    inlines = (ProfileAdminInline, )
     ordering = ['id']
     list_display = ['email']
     fieldsets = (

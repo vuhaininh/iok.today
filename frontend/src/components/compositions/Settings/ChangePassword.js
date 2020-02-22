@@ -86,19 +86,26 @@ class ChangePassword extends Component {
   }
   _updatePassword() {
     const user = JSON.parse(getUser());
-    PatchPassWordMutation(
-      user.id,
-      { password: this.state.password },
-      errors => {
-        if (errors != null) {
-          const { t } = this.props;
-          const message = getErrorMessage(t, errors);
-          this.context.setErrorMessage(message);
-          this.context.toggleErrorPopup(true);
-        } else this.context.toggleSuccessPopup(true);
-        this.forceUpdate();
-      },
-    );
+    const { t } = this.props;
+    if (this.state.password === this.state.confirm) {
+      PatchPassWordMutation(
+        user.id,
+        { password: this.state.password },
+        errors => {
+          if (errors != null) {
+            const message = getErrorMessage(t, errors);
+            this.context.setErrorMessage(message);
+            this.context.toggleErrorPopup(true);
+          } else this.context.toggleSuccessPopup(true);
+          this.forceUpdate();
+        },
+      );
+    } else {
+      const message = t('error-messages.same-passwords');
+      this.context.setErrorMessage(message);
+      this.context.toggleErrorPopup(true);
+      this.forceUpdate();
+    }
   }
 }
 

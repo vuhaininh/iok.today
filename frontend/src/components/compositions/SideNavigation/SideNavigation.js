@@ -40,8 +40,8 @@ const SideNavigation = props => {
       icon: <RecordVoiceOver />,
     },
     {
-      to: '/tags',
-      key: t('side-navigation.employees'),
+      to: '/staff',
+      key: t('side-navigation.staff'),
       icon: <PeopleAlt />,
     },
     {

@@ -5,7 +5,7 @@
     "overview": "Tổng quan",
     "products": "Sản phẩm",
     "customers": "Khách hàng",
-    "employees": "Nhân viên",
+    "staff": "Đội ngũ",
     "finance": "Tài chính",
     "settings": "Cài đặt"
   },
@@ -72,7 +72,8 @@
     "no-permission": "Bạn không được phân quyền thực hiện việc này",
     "no-blank": "Không được điền giá trị trống",
     "invalid-info": "Cần điền đúng thông tin, kiểm tra các định dạng đã nhập",
-    "invalid-actions": "Có lỗi xảy ra do thao tác không đúng!"
+    "invalid-actions": "Có lỗi xảy ra do thao tác không đúng!",
+    "same-passwords": "Mật khẩu cần nhập giống nhau"
   },
   "success-messages": {
     "success": "Thành công!",

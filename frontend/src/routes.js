@@ -11,6 +11,7 @@ import { Login } from './components/compositions/Login';
 import { Home } from './components/pages/Home';
 import { ProductPage } from './components/pages/Products';
 import { SettingsPage } from './components/pages/Settings';
+import { StaffPage } from './components/pages/Staff';
 import App from './App';
 
 const user = getUser();
@@ -21,6 +22,7 @@ const home = (
     <Route path="create-tag" Component={CreateTag}></Route>
     <Route path="products" Component={ProductPage} />
     <Route path="settings" Component={SettingsPage} />
+    <Route path="staff" Component={StaffPage} />
   </Route>
 );
 const entry = (

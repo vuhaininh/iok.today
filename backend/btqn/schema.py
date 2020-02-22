@@ -6,9 +6,10 @@ from users.schema import Query as users_Query
 from users.schema import Mutation as users_Mutation
 from products.schema import Query as products_Query
 from products.schema import Mutation as products_Mutation
+from profiles.schema import Query as profiles_Query
 
 
-class Query(pok_Query, users_Query, products_Query, graphene.ObjectType):
+class Query(pok_Query, users_Query, products_Query, profiles_Query, graphene.ObjectType):
     pass
 
 

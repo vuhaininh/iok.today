@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8b1118fe683b574f24f8ee195ded89d8
+ * @relayHash b3ff1754ac4198974dcbfb13a4721bcc
  */
 
 /* eslint-disable */
@@ -12,8 +12,6 @@ import type { ConcreteRequest } from 'relay-runtime';
 export type CreateUserInput = {|
   password: string,
   email: string,
-  firstName: string,
-  lastName: string,
 |};
 export type LogInMutationInput = {|
   email: string,

@@ -81,7 +81,6 @@ class OrderNode(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    product = relay.Node.Field(ProductNode)
     products = DjangoFilterConnectionField(ProductNode)
 
     @login_required
