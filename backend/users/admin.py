@@ -15,7 +15,7 @@ class RolePermissionsUserAdminMixin(object):
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
-    list_display = ['email', 'first_name', 'last_name']
+    list_display = ['email']
     fieldsets = (
         (None, {
             'fields': (
@@ -23,9 +23,7 @@ class UserAdmin(BaseUserAdmin):
                 'password',
             ),
         }),
-        (_('Personal Info'), {
-            'fields': ('first_name', 'last_name')
-        }),
+
         (_('Roles'), {
             'fields': ('groups',)
         }),
@@ -37,7 +35,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'first_name', 'last_name'),
+            'fields': ('email', 'password1', 'password2'),
         }),
     )
     """ Must be mixed in with an UserAdmin class"""
@@ -48,7 +46,7 @@ class UserAdmin(BaseUserAdmin):
         super(UserAdmin, self).save_related(request, form, formsets, change)
 
         new_user_groups = set(g.name for g in user.groups.all())
-        print(new_user_groups)
+
         for role_name in (old_user_roles - new_user_groups):  # roles removed from User's groups
             try:  # put the recently removed group back, let rolepermissions remove it...
                 group = Group.objects.get(name=role_name)

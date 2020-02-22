@@ -24,9 +24,9 @@ class CreateCategory extends Component {
     return (
       <Box>
         <ErrorPopup
-          isOpen={this.context.openError}
+          isOpen={this.context.openErrorPopup}
           handleClose={() => {
-            this.context.toggleError(false);
+            this.context.toggleErrorPopup(false);
             this.forceUpdate();
           }}
           message={this.context.errorMessage}
@@ -76,7 +76,7 @@ class CreateCategory extends Component {
         const { t } = this.props;
         const message = getErrorMessage(t, errors);
         this.context.setErrorMessage(message);
-        this.context.toggleError(true);
+        this.context.toggleErrorPopup(true);
         this.forceUpdate();
       }
       this.reset();

@@ -21,7 +21,7 @@ class UserNode(DjangoObjectType):
 
     class Meta:
         model = get_user_model()
-        filter_fields = ['id', 'first_name', 'last_name', 'email']
+        filter_fields = ['id', 'email']
         interfaces = (relay.Node,)
 
 
@@ -70,7 +70,7 @@ class CreateUserMutation(DjangoCreateMutation):
     class Meta:
         model = get_user_model()
         required_firleds = ("email", "password")
-        only_fields = ("email", "password", "first_name", "last_name")
+        only_fields = ("email", "password")
 
     @classmethod
     def handle_password(cls, value, name, info):
@@ -80,7 +80,7 @@ class CreateUserMutation(DjangoCreateMutation):
 class PatchUserMutation(DjangoPatchMutation):
     class Meta:
         model = get_user_model()
-        only_fields = ("email", "password", "first_name", "last_name")
+        only_fields = ("email", "password")
         login_required = True
 
     @classmethod

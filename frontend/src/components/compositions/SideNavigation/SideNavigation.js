@@ -13,6 +13,7 @@ import {
   RecordVoiceOver,
   ShowChart,
   BarChart,
+  Settings,
 } from '@material-ui/icons';
 import { withTranslation } from 'react-i18next';
 
@@ -47,6 +48,11 @@ const SideNavigation = props => {
       to: '/tags',
       key: t('side-navigation.finance'),
       icon: <ShowChart />,
+    },
+    {
+      to: '/settings',
+      key: t('side-navigation.settings'),
+      icon: <Settings />,
     },
   ];
   const createSideNavItems = sideNavItems => {

@@ -107,9 +107,9 @@ class ProductList extends Component {
     return (
       <Box>
         <ErrorPopup
-          isOpen={this.context.openError}
+          isOpen={this.context.openErrorPopup}
           handleClose={() => {
-            this.context.toggleError(false);
+            this.context.toggleErrorPopup(false);
             this.forceUpdate();
           }}
           message={this.context.errorMessage}
@@ -132,10 +132,9 @@ class ProductList extends Component {
                       delete newData.id;
                       PatchProductMutation(id, newData, errors => {
                         if (errors != null) {
-                          const { t } = this.props;
                           const message = getErrorMessage(t, errors);
                           this.context.setErrorMessage(message);
-                          this.context.toggleError(true);
+                          this.context.toggleErrorPopup(true);
                           this.forceUpdate();
                         }
                       });

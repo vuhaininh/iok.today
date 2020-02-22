@@ -1,16 +1,20 @@
 import React from 'react';
-const toggleError = isOpen => {
-  initialState.openError = isOpen;
+const toggleErrorPopup = isOpen => {
+  initialState.openErrorPopup = isOpen;
 };
 const setErrorMessage = message => {
   initialState.errorMessage = message;
 };
-
+const toggleSuccessPopup = isOpen => {
+  initialState.openSuccessPopup = isOpen;
+};
 export const initialState = {
-  openError: false,
+  openErrorPopup: false,
   errorMessage: '',
-  toggleError,
+  toggleErrorPopup,
   setErrorMessage,
+  openSuccessPopup: false,
+  toggleSuccessPopup,
 };
 
 export const AppContext = React.createContext(initialState);

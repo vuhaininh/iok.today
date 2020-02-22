@@ -93,7 +93,6 @@ class Query(graphene.ObjectType):
 
     @login_required
     def resolve_tags(self, info, **kwargs):
-        print(info.context.user)
         return Tag.objects.all()
 
     objective = relay.Node.Field(ObjectiveNode)

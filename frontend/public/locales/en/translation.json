@@ -6,7 +6,8 @@
     "products": "Products",
     "customers": "Customers",
     "employees": "Employees",
-    "finance": "Finance"
+    "finance": "Finance",
+    "settings": "Settings"
   },
   "login-title": "Follow our goals right now",
   "errors": {
@@ -73,6 +74,10 @@
     "invalid-info": "Enter valid data",
     "invalid-actions": "There is error caused by invalid action!"
   },
+  "success-messages": {
+    "success": "Success!",
+    "success-operation": "Operation successfully completed"
+  },
   "key-code": {
     "code": "Code",
     "group": "Group",
@@ -83,7 +88,13 @@
     "actions": "Actions",
     "empty": "",
     "edit": "Edit",
-    "ok": "Ok"
+    "ok": "Ok",
+    "update": "Update"
+  },
+  "settings": {
+    "password": "Password",
+    "update-password": "Update password",
+    "confirm-password": "Confirm password"
   }
 
 }
