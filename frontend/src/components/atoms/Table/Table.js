@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import MaterialTable from 'material-table';
 import { TableIcons } from './TableIcons';
-export default ({ columnIndex, ...props }) => {
+export default ({ ActionsColumnIndex, ...props }) => {
   const { t } = useTranslation();
 
   const options = {
@@ -10,7 +10,7 @@ export default ({ columnIndex, ...props }) => {
     pageSizeOptions: [10, 20, 50, 100, 200, 500, 1000],
     showTitle: false,
     sorting: true,
-    actionsColumnIndex: columnIndex,
+    actionsColumnIndex: ActionsColumnIndex,
   };
   const localization = {
     toolbar: {

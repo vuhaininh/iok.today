@@ -96,5 +96,11 @@
     "password": "Mật khẩu",
     "update-password": "Cập nhật mật khẩu",
     "confirm-password": "Xác nhận mật khẩu"
+  },
+  "staff": {
+    "full-name": "Họ tên",
+    "mobile": "Di động",
+    "liability": "Công nợ",
+    "liability-limit": "Hạn mức"
   }
 }

@@ -3,11 +3,19 @@ $iok--blue: rgb(80, 173, 229);
 $iok--red: rgb(214, 61, 94);
 $iok--black: #000;
 $iok--gray: #37474f;
+$iok--success: #4caf50;
+$iok--info: #2196f3;
+$iok--warning: #ff9800;
+$iok--error:#f44336;
 /* Color list */
 $colors: ("blue": $iok--blue,
     "red": $iok--red,
     "black": $iok--black,
-    "gray": $iok--gray);
+    "gray": $iok--gray,
+    "success":$iok--success,
+    "info":$iok--info,
+    "warning":$iok--warning,
+    "error":$iok--error, );
 /* Sizes */
 $spacing-none: 0;
 $spacing-extra-small: .25rem;

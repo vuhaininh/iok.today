@@ -1,5 +1,6 @@
 from personal_okr.factories import TagFactory, ObjectiveFactory, KeyResultFactory
 from users.factories import UserFactory
+from profiles.factories import StaffProfileFactory
 from personal_okr.models import Tag
 import random
 
@@ -9,7 +10,9 @@ from products.models import Category
 def create_sample_users():
     i = 1
     while i < 10:
-        UserFactory()
+        user = UserFactory()
+        staff = StaffProfileFactory(user=user)
+        print(staff)
         i += 1
 
 

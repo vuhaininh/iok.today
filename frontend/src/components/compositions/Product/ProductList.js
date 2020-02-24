@@ -117,7 +117,7 @@ class ProductList extends Component {
         <Table
           columns={columns}
           data={getData(products)}
-          columnIndex={-1}
+          ActionsColumnIndex={-1}
           editable={
             canEdit
               ? {

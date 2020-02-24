@@ -97,6 +97,12 @@
     "update-password": "Update password",
     "confirm-password": "Confirm password"
 
+  },
+  "staff": {
+    "full-name": "Full name",
+    "mobile": "Mobile",
+    "liability": "Liability",
+    "liability-limit": "Liability Limit"
   }
 
 }
