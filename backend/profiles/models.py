@@ -1,3 +1,4 @@
+from customers.models import Customer
 from django.db import models
 from django.conf import settings
 from faker import Faker
@@ -34,8 +35,38 @@ class StaffProfile(IndividualProfile):
     liability_limit = models.FloatField(default=0, null=True)
 
 
-class CustomerProfile(IndividualProfile):
-    pass
+class IndividualCustomerProfile(IndividualProfile):
+    own = models.ForeignKey(
+        Customer,
+        related_name='individual_profile',
+        on_delete=models.CASCADE,
+    )
+    email = models.CharField(max_length=100, null=True)
+    liability = models.FloatField(default=0, null=True)
+    liability_limit = models.FloatField(default=0, null=True)
+
+
+class OrganizationProfile(Profile):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
+    tax_code = models.CharField(max_length=30)
+
+    class Meta:
+        abstract = True
+
+
+class CompanyCustomerProfile(OrganizationProfile):
+    own = models.ForeignKey(
+        Customer,
+        related_name='company_profile',
+        on_delete=models.CASCADE,
+    )
+    liability = models.FloatField(default=0, null=True)
+    liability_limit = models.FloatField(default=0, null=True)
+    representatives = models.ManyToManyField(IndividualCustomerProfile)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class BankAccount(models.Model):
@@ -43,3 +74,14 @@ class BankAccount(models.Model):
     bank_name = models.CharField(max_length=50)
     branch = models.CharField(max_length=60)
     owner = models.CharField(max_length=50)
+
+    class Meta:
+        abstract = True
+
+
+class CustomerBankAccount(BankAccount):
+    own = models.ForeignKey(
+        Customer,
+        related_name='bank_account',
+        on_delete=models.CASCADE,
+    )

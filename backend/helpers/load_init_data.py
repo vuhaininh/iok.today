@@ -1,6 +1,7 @@
 
 from products.models import Category
 from products.models import Product
+from customers.models import CustomerGroup
 
 
 def create_products():
@@ -24,3 +25,10 @@ def create_products():
             attributes="+-14",  listed_price=2000000).save()
     Product(category=bom, code="BOM45", name="Bơm 45m",
             attributes="+-14",  listed_price=3000000).save()
+
+
+def create_customer_groups():
+    CustomerGroup(code="CTY", name="Công ty").save()
+    CustomerGroup(code="CNH", name="Cá nhân").save()
+    CustomerGroup(code="BET", name="Bê tông").save()
+    CustomerGroup(code="CXD", name="Cai xây dựng").save()

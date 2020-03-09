@@ -102,7 +102,36 @@
     "full-name": "Full name",
     "mobile": "Mobile",
     "liability": "Liability",
-    "liability-limit": "Liability Limit"
+    "liability-limit": "Liability Limit",
+    "view-detail": "View detail",
+    "position": "Position",
+    "dob": "Date of birth",
+    "address": "Address",
+    "email": "Email"
+  },
+  "customers": {
+    "individual-list": "Individual list",
+    "full-name": "Full name",
+    "mobile": "Mobile",
+    "view-detail": "View detail",
+    "position": "Position",
+    "dob": "Date of birth",
+    "address": "Address",
+    "email": "Email",
+    "code": "Code",
+    "individual": "Individual",
+    "company": "Company",
+    "company-list": "Company list"
+  },
+  "company": {
+    "name": "Name",
+    "address": "Address",
+    "tax-code": "Tax Code",
+    "liability": "Liability",
+    "liability-limit": "Liability Limit",
+    "representative": "Representative",
+    "position": "Position",
+    "code": "Code"
   }
 
 }

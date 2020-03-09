@@ -67,4 +67,5 @@ const node/*: ReaderFragment*/ = {
 };
 // prettier-ignore
 (node/*: any*/).hash = '07c0380fc2c6cb3a10cc4eec17942831';
+
 module.exports = node;

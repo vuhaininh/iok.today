@@ -17,9 +17,38 @@ class StaffProfileNode(DjangoObjectType):
         filter_fields = ['id']
 
 
+class IndividualCustomerProfileNode(DjangoObjectType):
+    class Meta:
+        model = models.IndividualCustomerProfile
+        interfaces = (relay.Node,)
+        filter_fields = ['id']
+
+
+class CompanyCustomerProfileNode(DjangoObjectType):
+    class Meta:
+        model = models.CompanyCustomerProfile
+        interfaces = (relay.Node,)
+        filter_fields = ['id']
+
+
 class Query(graphene.ObjectType):
+    staff_profile = relay.Node.Field(StaffProfileNode)
     staff_profiles = DjangoFilterConnectionField(StaffProfileNode)
 
     @login_required
     def resolve_staff_profiles(self, info, **kwargs):
         return models.StaffProfile.objects.all()
+
+    individual_customer_profile = relay.Node.Field(IndividualCustomerProfileNode)
+    individual_customer_profiles = DjangoFilterConnectionField(IndividualCustomerProfileNode)
+
+    @login_required
+    def resolve_individual_customer_profiles(self, info, **kwargs):
+        return models.IndividualCustomerProfile.objects.all()
+
+    company_customer_profile = relay.Node.Field(CompanyCustomerProfileNode)
+    company_customer_profiles = DjangoFilterConnectionField(CompanyCustomerProfileNode)
+
+    @login_required
+    def resolve_company_customer_profiles(self, info, **kwargs):
+        return models.CompanyCustomerProfile.objects.all()

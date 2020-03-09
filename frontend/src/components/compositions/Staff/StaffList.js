@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Box from '@material-ui/core/Box';
+import { getLiabilityColor } from '../../../utils/Formatter';
 import { Table } from '../../atoms/Table';
-import { dateFormat } from '../../../utils/Formatter';
 import { withTranslation } from 'react-i18next';
-
+import { Visibility } from '@material-ui/icons';
+import { withRouter } from 'found';
 const getData = profiles => {
   return profiles.edges.map(({ node }) => {
     const {
@@ -17,11 +18,7 @@ const getData = profiles => {
       liability,
       liabilityLimit,
     } = node;
-    let color = '#fff';
-    const percent = (liability * 100) / liabilityLimit;
-    if (percent <= 60) color = 'success';
-    else if (percent <= 80) color = 'warning';
-    else color = 'error';
+    const color = getLiabilityColor(liability, liabilityLimit);
 
     return {
       id,
@@ -49,6 +46,10 @@ class StaffList extends Component {
         field: 'name',
       },
       {
+        title: t('staff.position'),
+        field: 'position',
+      },
+      {
         title: t('staff.mobile'),
         field: 'mobile',
       },
@@ -69,11 +70,24 @@ class StaffList extends Component {
     ];
 
     return (
-      <Box>
-        <Table columns={columns} data={getData(staffProfiles)} />
+      <Box className="ml3 mb3 mr2">
+        <Table
+          columns={columns}
+          data={getData(staffProfiles)}
+          ActionsColumnIndex={-1}
+          actions={[
+            {
+              icon: () => <Visibility />,
+              tooltip: t('staff.view-detail'),
+              onClick: (event, rowData) => {
+                this.props.router.replace(`/staff/${rowData.id}`);
+              },
+            },
+          ]}
+        />
       </Box>
     );
   }
 }
 
-export default withTranslation()(StaffList);
+export default withTranslation()(withRouter(StaffList));

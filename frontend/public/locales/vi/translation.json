@@ -101,6 +101,35 @@
     "full-name": "Họ tên",
     "mobile": "Di động",
     "liability": "Công nợ",
-    "liability-limit": "Hạn mức"
+    "liability-limit": "Hạn mức",
+    "view-detail": "Xem chi tiết",
+    "position": "Chức vụ",
+    "dob": "Ngày sinh",
+    "address": "Địa chỉ",
+    "email": "Email"
+  },
+  "customers": {
+    "individual-list": "Danh sách cá nhân",
+    "full-name": "Họ tên",
+    "mobile": "Di động",
+    "view-detail": "Xem chi tiết",
+    "position": "Chức vụ",
+    "dob": "Ngày sinh",
+    "address": "Địa chỉ",
+    "email": "Email",
+    "code": "Mã",
+    "individual": "Cá nhân",
+    "company": "Công ty",
+    "company-list": "Danh sách công ty"
+  },
+  "company": {
+    "name": "Tên",
+    "address": "Địa chỉ",
+    "tax-code": "Mã số thuế",
+    "liability": "Công nợ",
+    "liability-limit": "Hạn mức",
+    "representative": "Đại diện",
+    "position": "Vị trí",
+    "code": "Mã"
   }
 }

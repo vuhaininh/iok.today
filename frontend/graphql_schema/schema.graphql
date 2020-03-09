@@ -26,6 +26,35 @@ type CategoryNodeEdge {
   cursor: String!
 }
 
+type CompanyCustomerProfileNode implements Node {
+  """The ID of the object."""
+  id: ID!
+  name: String!
+  address: String!
+  taxCode: String!
+  own: CustomerNode!
+  liability: Float
+  liabilityLimit: Float
+  representatives(before: String, after: String, first: Int, last: Int, id: ID): IndividualCustomerProfileNodeConnection!
+}
+
+type CompanyCustomerProfileNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [CompanyCustomerProfileNodeEdge]!
+}
+
+"""A Relay edge containing a `CompanyCustomerProfileNode` and its cursor."""
+type CompanyCustomerProfileNodeEdge {
+  """The item at the end of the edge"""
+  node: CompanyCustomerProfileNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 input CreateCategoryInput {
   code: String!
   name: String!
@@ -97,6 +126,57 @@ type CreateUserMutation {
   user: UserNode
 }
 
+type CustomerGroupNode implements Node {
+  """The ID of the object."""
+  id: ID!
+  code: String!
+  name: String!
+  customer(before: String, after: String, first: Int, last: Int, code: String): CustomerNodeConnection!
+}
+
+type CustomerGroupNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [CustomerGroupNodeEdge]!
+}
+
+"""A Relay edge containing a `CustomerGroupNode` and its cursor."""
+type CustomerGroupNodeEdge {
+  """The item at the end of the edge"""
+  node: CustomerGroupNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type CustomerNode implements Node {
+  """The ID of the object."""
+  id: ID!
+  code: String!
+  customerGroup: CustomerGroupNode!
+  individualProfile(before: String, after: String, first: Int, last: Int, id: ID): IndividualCustomerProfileNodeConnection!
+  companyProfile(before: String, after: String, first: Int, last: Int, id: ID): CompanyCustomerProfileNodeConnection!
+}
+
+type CustomerNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [CustomerNodeEdge]!
+}
+
+"""A Relay edge containing a `CustomerNode` and its cursor."""
+type CustomerNodeEdge {
+  """The item at the end of the edge"""
+  node: CustomerNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 """
 The `Date` scalar type represents a Date
 value as specified by
@@ -146,6 +226,42 @@ type GroupNode {
   The groups this user belongs to. A user will get all permissions granted to each of their groups.
   """
   userSet(before: String, after: String, first: Int, last: Int, id: ID, email: String): UserNodeConnection!
+}
+
+type IndividualCustomerProfileNode implements Node {
+  firstName: String
+  lastName: String
+  mobile: String
+  address: String
+  position: String!
+  dob: Date
+
+  """The ID of the object."""
+  id: ID!
+  own: CustomerNode!
+  email: String
+  liability: Float
+  liabilityLimit: Float
+  companycustomerprofileSet(before: String, after: String, first: Int, last: Int, id: ID): CompanyCustomerProfileNodeConnection!
+}
+
+type IndividualCustomerProfileNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [IndividualCustomerProfileNodeEdge]!
+}
+
+"""
+A Relay edge containing a `IndividualCustomerProfileNode` and its cursor.
+"""
+type IndividualCustomerProfileNodeEdge {
+  """The item at the end of the edge"""
+  node: IndividualCustomerProfileNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 type KeyResultNode implements Node {
@@ -408,7 +524,25 @@ type ProductNodeEdge {
 }
 
 type Query {
+  """The ID of the object"""
+  customer(id: ID!): CustomerNode
+  customers(before: String, after: String, first: Int, last: Int, code: String): CustomerNodeConnection
+
+  """The ID of the object"""
+  customerGroup(id: ID!): CustomerGroupNode
+  customerGroups(before: String, after: String, first: Int, last: Int, code: String): CustomerGroupNodeConnection
+
+  """The ID of the object"""
+  staffProfile(id: ID!): StaffProfileNode
   staffProfiles(before: String, after: String, first: Int, last: Int, id: ID): StaffProfileNodeConnection
+
+  """The ID of the object"""
+  individualCustomerProfile(id: ID!): IndividualCustomerProfileNode
+  individualCustomerProfiles(before: String, after: String, first: Int, last: Int, id: ID): IndividualCustomerProfileNodeConnection
+
+  """The ID of the object"""
+  companyCustomerProfile(id: ID!): CompanyCustomerProfileNode
+  companyCustomerProfiles(before: String, after: String, first: Int, last: Int, id: ID): CompanyCustomerProfileNodeConnection
   products(before: String, after: String, first: Int, last: Int, code: String): ProductNodeConnection
   categories(before: String, after: String, first: Int, last: Int, code: String): CategoryNodeConnection
 
@@ -454,15 +588,15 @@ type RevokePayload {
 type StaffProfileNode implements Node {
   """The ID of the object."""
   id: ID!
-  firstName: String!
-  lastName: String!
-  mobile: String!
-  address: String!
+  firstName: String
+  lastName: String
+  mobile: String
+  address: String
   position: String!
-  liability: Float!
-  liabilityLimit: Float!
-  dob: Date!
+  dob: Date
   user: UserNode!
+  liability: Float
+  liabilityLimit: Float
 }
 
 type StaffProfileNodeConnection {

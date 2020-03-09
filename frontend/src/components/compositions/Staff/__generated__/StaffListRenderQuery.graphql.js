@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6b81ff9d4604fe17dfb6d6321712cc3f
+ * @relayHash 49977b2cbca15ee3608dd64d82493acd
  */
 
 /* eslint-disable */
@@ -17,14 +17,14 @@ export type StaffListRenderQueryResponse = {|
     +edges: $ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
-        +firstName: string,
-        +lastName: string,
+        +firstName: ?string,
+        +lastName: ?string,
         +position: string,
-        +dob: any,
-        +mobile: string,
-        +address: string,
-        +liability: number,
-        +liabilityLimit: number,
+        +dob: ?any,
+        +mobile: ?string,
+        +address: ?string,
+        +liability: ?number,
+        +liabilityLimit: ?number,
         +user: {|
           +id: string,
           +email: string,
@@ -303,4 +303,5 @@ return {
 })();
 // prettier-ignore
 (node/*: any*/).hash = '004f0b5dc156be57d3b8e47dad825c6b';
+
 module.exports = node;
