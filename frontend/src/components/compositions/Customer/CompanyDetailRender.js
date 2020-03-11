@@ -8,7 +8,18 @@ const CompanyDetailRenderQuery = graphql`
     companyCustomerProfile(id: $id) {
       id
       own {
+        id
         code
+        bankAccount {
+          edges {
+            node {
+              accountNumber
+              bankName
+              branch
+              owner
+            }
+          }
+        }
       }
       name
       address

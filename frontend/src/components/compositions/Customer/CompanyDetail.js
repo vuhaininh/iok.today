@@ -4,11 +4,11 @@ import { Card, CardContent, Typography } from '@material-ui/core';
 
 import { withTranslation } from 'react-i18next';
 import { Link } from 'found';
-
+import BankAccountList from '../BankAccount/BankAccountList';
 const generateRepresentatives = (representatives, t) => {
   return representatives.edges.map(({ node }) => {
     const { id, firstName, lastName, position } = node;
-    const link = `/icustomers/${id}`
+    const link = `/icustomers/${id}`;
     return (
       <Typography gutterBottom color="textSecondary" variant="body2">
         <Link to={link}>{`${lastName} ${firstName} `}</Link>
@@ -66,6 +66,7 @@ class CompanyDetail extends Component {
               {`${t('company.representative')}: `}
             </Typography>
             {generateRepresentatives(representatives, t)}
+            <BankAccountList own={own} />
           </CardContent>
         </Card>
       </Box>

@@ -90,7 +90,8 @@
     "empty": "",
     "edit": "Sửa",
     "ok": "Ok",
-    "update": "Cập nhật"
+    "update": "Cập nhật",
+    "add-new":"Thêm mới"
   },
   "settings": {
     "password": "Mật khẩu",
@@ -106,7 +107,8 @@
     "position": "Chức vụ",
     "dob": "Ngày sinh",
     "address": "Địa chỉ",
-    "email": "Email"
+    "email": "Email",
+    "add-new": "Thêm nhân viên"
   },
   "customers": {
     "individual-list": "Danh sách cá nhân",
@@ -130,6 +132,11 @@
     "liability-limit": "Hạn mức",
     "representative": "Đại diện",
     "position": "Vị trí",
-    "code": "Mã"
+    "code": "Mã",
+    "bank-accounts": "Tài khoản ngân hàng",
+    "account-number": "Số tài khoản",
+    "bank-name": "Ngân hàng",
+    "branch": "Chi nhánh",
+    "owner": "Chủ tài khoản"
   }
 }

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b0df81373d80b759987cd04738adc7a7
+ * @relayHash c9b021d40df9a5ea43c6841646c33e3c
  */
 
 /* eslint-disable */
@@ -16,7 +16,18 @@ export type CompanyDetailRenderQueryResponse = {|
   +companyCustomerProfile: ?{|
     +id: string,
     +own: {|
-      +code: string
+      +id: string,
+      +code: string,
+      +bankAccount: {|
+        +edges: $ReadOnlyArray<?{|
+          +node: ?{|
+            +accountNumber: string,
+            +bankName: string,
+            +branch: string,
+            +owner: string,
+          |}
+        |}>
+      |},
     |},
     +name: string,
     +address: string,
@@ -49,8 +60,19 @@ query CompanyDetailRenderQuery(
   companyCustomerProfile(id: $id) {
     id
     own {
-      code
       id
+      code
+      bankAccount {
+        edges {
+          node {
+            accountNumber
+            bankName
+            branch
+            owner
+            id
+          }
+        }
+      }
     }
     name
     address
@@ -104,39 +126,67 @@ v3 = {
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "accountNumber",
   "args": null,
   "storageKey": null
 },
 v5 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "address",
+  "name": "bankName",
   "args": null,
   "storageKey": null
 },
 v6 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "taxCode",
+  "name": "branch",
   "args": null,
   "storageKey": null
 },
 v7 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "liability",
+  "name": "owner",
   "args": null,
   "storageKey": null
 },
 v8 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "liabilityLimit",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v9 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "address",
+  "args": null,
+  "storageKey": null
+},
+v10 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "taxCode",
+  "args": null,
+  "storageKey": null
+},
+v11 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "liability",
+  "args": null,
+  "storageKey": null
+},
+v12 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "liabilityLimit",
+  "args": null,
+  "storageKey": null
+},
+v13 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "representatives",
@@ -219,15 +269,53 @@ return {
             "concreteType": "CustomerNode",
             "plural": false,
             "selections": [
-              (v3/*: any*/)
+              (v2/*: any*/),
+              (v3/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "bankAccount",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "CustomerBankAccountNodeConnection",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "edges",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "CustomerBankAccountNodeEdge",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "node",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "CustomerBankAccountNode",
+                        "plural": false,
+                        "selections": [
+                          (v4/*: any*/),
+                          (v5/*: any*/),
+                          (v6/*: any*/),
+                          (v7/*: any*/)
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
             ]
           },
-          (v4/*: any*/),
-          (v5/*: any*/),
-          (v6/*: any*/),
-          (v7/*: any*/),
           (v8/*: any*/),
-          (v9/*: any*/)
+          (v9/*: any*/),
+          (v10/*: any*/),
+          (v11/*: any*/),
+          (v12/*: any*/),
+          (v13/*: any*/)
         ]
       }
     ]
@@ -256,16 +344,54 @@ return {
             "concreteType": "CustomerNode",
             "plural": false,
             "selections": [
+              (v2/*: any*/),
               (v3/*: any*/),
-              (v2/*: any*/)
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "bankAccount",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "CustomerBankAccountNodeConnection",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "edges",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "CustomerBankAccountNodeEdge",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "node",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "CustomerBankAccountNode",
+                        "plural": false,
+                        "selections": [
+                          (v4/*: any*/),
+                          (v5/*: any*/),
+                          (v6/*: any*/),
+                          (v7/*: any*/),
+                          (v2/*: any*/)
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
             ]
           },
-          (v4/*: any*/),
-          (v5/*: any*/),
-          (v6/*: any*/),
-          (v7/*: any*/),
           (v8/*: any*/),
-          (v9/*: any*/)
+          (v9/*: any*/),
+          (v10/*: any*/),
+          (v11/*: any*/),
+          (v12/*: any*/),
+          (v13/*: any*/)
         ]
       }
     ]
@@ -274,12 +400,12 @@ return {
     "operationKind": "query",
     "name": "CompanyDetailRenderQuery",
     "id": null,
-    "text": "query CompanyDetailRenderQuery(\n  $id: ID!\n) {\n  companyCustomerProfile(id: $id) {\n    id\n    own {\n      code\n      id\n    }\n    name\n    address\n    taxCode\n    liability\n    liabilityLimit\n    representatives {\n      edges {\n        node {\n          id\n          firstName\n          lastName\n          position\n        }\n      }\n    }\n  }\n}\n",
+    "text": "query CompanyDetailRenderQuery(\n  $id: ID!\n) {\n  companyCustomerProfile(id: $id) {\n    id\n    own {\n      id\n      code\n      bankAccount {\n        edges {\n          node {\n            accountNumber\n            bankName\n            branch\n            owner\n            id\n          }\n        }\n      }\n    }\n    name\n    address\n    taxCode\n    liability\n    liabilityLimit\n    representatives {\n      edges {\n        node {\n          id\n          firstName\n          lastName\n          position\n        }\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '7a6ed39c84a121c06485f076edda1429';
+(node/*: any*/).hash = '699d8143018e43d0e9631462baf29161';
 
 module.exports = node;

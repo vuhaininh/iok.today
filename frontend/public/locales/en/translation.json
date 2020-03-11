@@ -90,7 +90,8 @@
     "empty": "",
     "edit": "Edit",
     "ok": "Ok",
-    "update": "Update"
+    "update": "Update",
+    "add-new": "Add new"
   },
   "settings": {
     "password": "Password",
@@ -107,7 +108,8 @@
     "position": "Position",
     "dob": "Date of birth",
     "address": "Address",
-    "email": "Email"
+    "email": "Email",
+    "add-new": "Add new employee"
   },
   "customers": {
     "individual-list": "Individual list",
@@ -131,7 +133,12 @@
     "liability-limit": "Liability Limit",
     "representative": "Representative",
     "position": "Position",
-    "code": "Code"
+    "code": "Code",
+    "bank-accounts": "Bank accounts",
+    "account-number": "Account number",
+    "bank-name": "Bank name",
+    "branch": "Branch",
+    "owner": "Owner"
   }
 
 }

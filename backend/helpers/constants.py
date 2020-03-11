@@ -41,3 +41,4 @@ PERMISSIONS = {
 APP_NAMES = {
     "users": "users"
 }
+FULL_ALLOWED_ROLES = ['accountant', 'admin', 'director']

@@ -5,6 +5,9 @@ import { Table } from '../../atoms/Table';
 import { withTranslation } from 'react-i18next';
 import { Visibility } from '@material-ui/icons';
 import { withRouter } from 'found';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import Drawer from '@material-ui/core/Drawer';
 const getData = profiles => {
   return profiles.edges.map(({ node }) => {
     const {
@@ -37,7 +40,10 @@ const getData = profiles => {
 };
 
 class StaffList extends Component {
-  state = {};
+  state = { right: false };
+  _toggleDrawer(side, open) {
+    this.setState({ ...this.state, [side]: open });
+  }
   render() {
     const { staffProfiles, t } = this.props;
     const columns = [
@@ -71,6 +77,24 @@ class StaffList extends Component {
 
     return (
       <Box className="ml3 mb3 mr2">
+        <Button
+          variant="outlined"
+          color="primary"
+          size="large"
+          startIcon={<AddIcon />}
+          size="medium"
+          className="mb3"
+          onClick={() => this._toggleDrawer('right', true)}
+        >
+          {t('key-code.add-new')}
+        </Button>
+        <Drawer
+          anchor="right"
+          open={this.state.right}
+          onClose={() => this._toggleDrawer('right', false)}
+        >
+          Test
+        </Drawer>
         <Table
           columns={columns}
           data={getData(staffProfiles)}

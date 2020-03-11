@@ -8,6 +8,7 @@ from graphene_django_cud.mutations import DjangoCreateMutation,\
     DjangoPatchMutation
 
 from btqn_utils.decorators import has_role_decorator
+from helpers.constants import FULL_ALLOWED_ROLES
 
 
 class StaffProfileNode(DjangoObjectType):
@@ -31,6 +32,25 @@ class CompanyCustomerProfileNode(DjangoObjectType):
         filter_fields = ['id']
 
 
+class CustomerBankAccountNode(DjangoObjectType):
+    class Meta:
+        model = models.CustomerBankAccount
+        interfaces = (relay.Node,)
+        filter_fields = ['id']
+
+
+class CreateCustomerBankAccountMutation(DjangoCreateMutation):
+
+    class Meta:
+        model = models.CustomerBankAccount
+
+    @classmethod
+    @login_required
+    @has_role_decorator(FULL_ALLOWED_ROLES)
+    def mutate(cls, root, info, input):
+        return super().mutate(root, info, input)
+
+
 class Query(graphene.ObjectType):
     staff_profile = relay.Node.Field(StaffProfileNode)
     staff_profiles = DjangoFilterConnectionField(StaffProfileNode)
@@ -52,3 +72,10 @@ class Query(graphene.ObjectType):
     @login_required
     def resolve_company_customer_profiles(self, info, **kwargs):
         return models.CompanyCustomerProfile.objects.all()
+
+    customer_bank_account = relay.Node.Field(CustomerBankAccountNode)
+    customer_bank_accounts = DjangoFilterConnectionField(CustomerBankAccountNode)
+
+
+class Mutation(graphene.AbstractType):
+    create_customer_bank_account = CreateCustomerBankAccountMutation.Field()

@@ -33,43 +33,43 @@
 
     /* Padding */
     .pa#{$index} {
-        padding: $size;
+        padding: $size !important;
     }
 
     .pt#{$index} {
-        padding-top: $size;
+        padding-top: $size !important;
     }
 
     .pr#{$index} {
-        padding-right: $size;
+        padding-right: $size !important;
     }
 
     .pb#{$index} {
-        padding-bottom: $size;
+        padding-bottom: $size !important;
     }
 
     .pl#{$index} {
-        padding-left: $size;
+        padding-left: $size !important;
     }
 
     /* Margin */
     .ma#{$index} {
-        margin: $size;
+        margin: $size !important;
     }
 
     .mt#{$index} {
-        margin-top: $size;
+        margin-top: $size !important;
     }
 
     .mr#{$index} {
-        margin-right: $size;
+        margin-right: $size !important;
     }
 
     .mb#{$index} {
-        margin-bottom: $size;
+        margin-bottom: $size !important;
     }
 
     .ml#{$index} {
-        margin-left: $size;
+        margin-left: $size !important;
     }
 }

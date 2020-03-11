@@ -70,13 +70,16 @@ class CompanyCustomerProfile(OrganizationProfile):
 
 
 class BankAccount(models.Model):
-    account_number = models.CharField(max_length=30)
+    account_number = models.CharField(max_length=30, unique=True)
     bank_name = models.CharField(max_length=50)
     branch = models.CharField(max_length=60)
     owner = models.CharField(max_length=50)
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return f"{self.account_number}"
 
 
 class CustomerBankAccount(BankAccount):
