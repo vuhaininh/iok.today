@@ -8,6 +8,7 @@ import { withRouter } from 'found';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Drawer from '@material-ui/core/Drawer';
+import CreateStaff from './CreateStaff';
 const getData = profiles => {
   return profiles.edges.map(({ node }) => {
     const {
@@ -80,7 +81,6 @@ class StaffList extends Component {
         <Button
           variant="outlined"
           color="primary"
-          size="large"
           startIcon={<AddIcon />}
           size="medium"
           className="mb3"
@@ -93,7 +93,7 @@ class StaffList extends Component {
           open={this.state.right}
           onClose={() => this._toggleDrawer('right', false)}
         >
-          Test
+          <CreateStaff toggleDrawer={this._toggleDrawer.bind(this)} />
         </Drawer>
         <Table
           columns={columns}

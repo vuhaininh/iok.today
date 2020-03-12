@@ -91,7 +91,9 @@
     "edit": "Edit",
     "ok": "Ok",
     "update": "Update",
-    "add-new": "Add new"
+    "add-new": "Add new",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "settings": {
     "password": "Password",
@@ -101,6 +103,8 @@
   },
   "staff": {
     "full-name": "Full name",
+    "first-name": "First name",
+    "last-name": "Last name",
     "mobile": "Mobile",
     "liability": "Liability",
     "liability-limit": "Liability Limit",
@@ -109,7 +113,8 @@
     "dob": "Date of birth",
     "address": "Address",
     "email": "Email",
-    "add-new": "Add new employee"
+    "add-new": "Add new employee",
+    "code": "Code"
   },
   "customers": {
     "individual-list": "Individual list",

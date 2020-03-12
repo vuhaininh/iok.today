@@ -51,6 +51,17 @@ class CreateCustomerBankAccountMutation(DjangoCreateMutation):
         return super().mutate(root, info, input)
 
 
+class CreateStaffProfile(DjangoCreateMutation):
+    class Meta:
+        model = models.StaffProfile
+
+    @classmethod
+    @login_required
+    @has_role_decorator(FULL_ALLOWED_ROLES)
+    def mutate(cls, root, info, input):
+        return super().mutate(root, info, input)
+
+
 class Query(graphene.ObjectType):
     staff_profile = relay.Node.Field(StaffProfileNode)
     staff_profiles = DjangoFilterConnectionField(StaffProfileNode)

@@ -71,7 +71,6 @@ class CreateCategory extends Component {
 
   _createCategory = () => {
     CreateCategoryMutation(this.state, errors => {
-      this.setState({ codeError: '' });
       if (errors != null) {
         const { t } = this.props;
         const message = getErrorMessage(t, errors);

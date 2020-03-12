@@ -48,11 +48,6 @@ class CreateProduct extends Component {
               size="small"
               value={this.state.code}
               onChange={e => this.setState({ code: e.target.value })}
-              helperText={
-                this.state.codeError === ''
-                  ? ''
-                  : this.state.codeError
-              }
               fullWidth
             />
           </Grid>

@@ -91,7 +91,9 @@
     "edit": "Sửa",
     "ok": "Ok",
     "update": "Cập nhật",
-    "add-new":"Thêm mới"
+    "add-new": "Thêm mới",
+    "save": "Lưu",
+    "cancel": "Hủy bỏ"
   },
   "settings": {
     "password": "Mật khẩu",
@@ -100,6 +102,8 @@
   },
   "staff": {
     "full-name": "Họ tên",
+    "first-name": "Tên",
+    "last-name": "Họ",
     "mobile": "Di động",
     "liability": "Công nợ",
     "liability-limit": "Hạn mức",
@@ -108,7 +112,8 @@
     "dob": "Ngày sinh",
     "address": "Địa chỉ",
     "email": "Email",
-    "add-new": "Thêm nhân viên"
+    "add-new": "Thêm nhân viên",
+    "code": "Mã"
   },
   "customers": {
     "individual-list": "Danh sách cá nhân",
