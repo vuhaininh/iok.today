@@ -229,3 +229,10 @@ mutation CreateCustomerBankAccount{
         }
     }
 }
+mutation CreateStaffProfile{
+    createStaffProfile(input: {firstName: "Test", lastName: "Game", mobile: "0983939333", address: "Bãi Cháy", position: "Nhân viên KD", user: "VXNlck5vZGU6MTM=", dob: "02-25-1989", liability: 12000000, liabilityLimit: 15000000}){
+        staffProfile{
+            id
+        }
+    }
+}

@@ -66,6 +66,18 @@ type CreateCategoryMutation {
   category: CategoryNode
 }
 
+input CreateCustomerBankAccountInput {
+  accountNumber: String!
+  bankName: String!
+  branch: String!
+  owner: String!
+  own: ID!
+}
+
+type CreateCustomerBankAccountMutation {
+  customerBankAccount: CustomerBankAccountNode
+}
+
 input CreateKeyResultInput {
   objective: ID!
   description: String!
@@ -106,6 +118,22 @@ type CreateProductMutation {
   product: ProductNode
 }
 
+input CreateStaffProfileInput {
+  firstName: String
+  lastName: String
+  mobile: String
+  address: String
+  position: String
+  dob: Date
+  user: ID!
+  liability: Float
+  liabilityLimit: Float
+}
+
+type CreateStaffProfileMutation {
+  staffProfile: StaffProfileNode
+}
+
 input CreateTagInput {
   name: String!
   user: ID!
@@ -124,6 +152,33 @@ input CreateUserInput {
 
 type CreateUserMutation {
   user: UserNode
+}
+
+type CustomerBankAccountNode implements Node {
+  """The ID of the object."""
+  id: ID!
+  accountNumber: String!
+  bankName: String!
+  branch: String!
+  owner: String!
+  own: CustomerNode!
+}
+
+type CustomerBankAccountNodeConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [CustomerBankAccountNodeEdge]!
+}
+
+"""A Relay edge containing a `CustomerBankAccountNode` and its cursor."""
+type CustomerBankAccountNodeEdge {
+  """The item at the end of the edge"""
+  node: CustomerBankAccountNode
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 type CustomerGroupNode implements Node {
@@ -158,6 +213,7 @@ type CustomerNode implements Node {
   customerGroup: CustomerGroupNode!
   individualProfile(before: String, after: String, first: Int, last: Int, id: ID): IndividualCustomerProfileNodeConnection!
   companyProfile(before: String, after: String, first: Int, last: Int, id: ID): CompanyCustomerProfileNodeConnection!
+  bankAccount(before: String, after: String, first: Int, last: Int, id: ID): CustomerBankAccountNodeConnection!
 }
 
 type CustomerNodeConnection {
@@ -311,6 +367,8 @@ type LogOutMutation {
 }
 
 type Mutation {
+  createCustomerBankAccount(input: CreateCustomerBankAccountInput!): CreateCustomerBankAccountMutation
+  createStaffProfile(input: CreateStaffProfileInput!): CreateStaffProfileMutation
   createProduct(input: CreateProductInput!): CreateProductMutation
   patchProduct(id: ID!, input: PatchProductInput!): PatchProductMutation
   createCategory(input: CreateCategoryInput!): CreateCategoryMutation
@@ -543,6 +601,10 @@ type Query {
   """The ID of the object"""
   companyCustomerProfile(id: ID!): CompanyCustomerProfileNode
   companyCustomerProfiles(before: String, after: String, first: Int, last: Int, id: ID): CompanyCustomerProfileNodeConnection
+
+  """The ID of the object"""
+  customerBankAccount(id: ID!): CustomerBankAccountNode
+  customerBankAccounts(before: String, after: String, first: Int, last: Int, id: ID): CustomerBankAccountNodeConnection
   products(before: String, after: String, first: Int, last: Int, code: String): ProductNodeConnection
   categories(before: String, after: String, first: Int, last: Int, code: String): CategoryNodeConnection
 

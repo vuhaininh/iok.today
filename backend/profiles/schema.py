@@ -51,7 +51,7 @@ class CreateCustomerBankAccountMutation(DjangoCreateMutation):
         return super().mutate(root, info, input)
 
 
-class CreateStaffProfile(DjangoCreateMutation):
+class CreateStaffProfileMutation(DjangoCreateMutation):
     class Meta:
         model = models.StaffProfile
 
@@ -90,3 +90,4 @@ class Query(graphene.ObjectType):
 
 class Mutation(graphene.AbstractType):
     create_customer_bank_account = CreateCustomerBankAccountMutation.Field()
+    create_staff_profile = CreateStaffProfileMutation.Field()

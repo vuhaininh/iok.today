@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 import CreateInitUser from './CreateInitUserMutation';
+import CreateStaffProfile from './CreateStaffProfileMutation';
+import { getErrorMessage } from '../../../utils/ErrorMessages';
+
 import { ErrorPopup } from '../../atoms/ErrorPopup';
 import { AppContext } from '../../../contexts/AppContext';
 import { withTranslation } from 'react-i18next';
@@ -22,6 +25,7 @@ class CreateStaff extends Component {
     dob: '',
     liability: '',
     liabilityLimit: '',
+    user: '',
   };
   resetState() {
     this.setState({
@@ -35,6 +39,7 @@ class CreateStaff extends Component {
       dob: '',
       liability: '',
       liabilityLimit: '',
+      user: '',
     });
   }
   render() {
@@ -58,7 +63,7 @@ class CreateStaff extends Component {
           {`${t('staff.add-new')}`}
         </Typography>
         <Grid container className="mb3">
-          <Grid item md={3} className="mr3">
+          <Grid item lg={3} className="mr3">
             <TextField
               label={t('staff.email')}
               variant="outlined"
@@ -68,11 +73,12 @@ class CreateStaff extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item md={3}>
+          <Grid item lg={3}>
             <TextField
               label={t('settings.password')}
               variant="outlined"
               size="small"
+              type="password"
               value={this.state.password}
               onChange={e =>
                 this.setState({ password: e.target.value })
@@ -82,7 +88,7 @@ class CreateStaff extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item md={3} className="mr3">
+          <Grid item lg={3} className="mr3">
             <TextField
               label={t('staff.last-name')}
               variant="outlined"
@@ -94,7 +100,7 @@ class CreateStaff extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item md={3}>
+          <Grid item lg={3}>
             <TextField
               label={t('staff.first-name')}
               variant="outlined"
@@ -108,7 +114,7 @@ class CreateStaff extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item md={3} className="mr3">
+          <Grid item lg={3} className="mr3">
             <TextField
               label={t('staff.mobile')}
               variant="outlined"
@@ -120,7 +126,7 @@ class CreateStaff extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item md={3}>
+          <Grid item lg={3}>
             <TextField
               label={t('staff.address')}
               variant="outlined"
@@ -134,7 +140,7 @@ class CreateStaff extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item md={3} className="mr3">
+          <Grid item lg={3} className="mr3">
             <TextField
               label={t('staff.position')}
               variant="outlined"
@@ -146,7 +152,7 @@ class CreateStaff extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item md={3}>
+          <Grid item lg={3}>
             <TextField
               label={t('staff.dob')}
               variant="outlined"
@@ -158,7 +164,7 @@ class CreateStaff extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item md={3} className="mr3">
+          <Grid item lg={3} className="mr3">
             <TextField
               label={t('staff.liability')}
               variant="outlined"
@@ -170,7 +176,7 @@ class CreateStaff extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item md={3}>
+          <Grid item lg={3}>
             <TextField
               label={t('staff.liability-limit')}
               variant="outlined"
@@ -216,10 +222,14 @@ class CreateStaff extends Component {
         this.context.setErrorMessage(message);
         this.context.toggleErrorPopup(true);
         this.forceUpdate();
+      } else {
+        const userId = response.createUser.user.id;
+        this.setState({ user: userId });
+        CreateStaffProfile(this.state, (response, errors) => {
+          console.log(response);
+        });
       }
     });
-    this.resetState();
-    this.props.toggleDrawer('right', false);
   };
 }
 CreateStaff.contextType = AppContext;
