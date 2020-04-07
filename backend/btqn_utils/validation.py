@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from contextlib import contextmanager
+from rolepermissions.checkers import has_role
 
 
 class ValidationErrorTestMixin(object):
@@ -17,3 +18,11 @@ class ValidationErrorTestMixin(object):
             self.assertEqual(set(kwargs['fields']), set(e.message_dict.keys()))
             if "messages" in kwargs:
                 self.assertEqual(kwargs['messages'], e.messages)
+
+
+def has_roles(user, roles):
+    has_roles = False
+    for role in roles:
+        if has_role(user, role):
+            has_roles = True
+    return has_roles

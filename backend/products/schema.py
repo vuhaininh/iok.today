@@ -7,7 +7,7 @@ from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django_cud.mutations import DjangoCreateMutation,\
     DjangoPatchMutation
 from django_filters import FilterSet, OrderingFilter
-
+from helpers.constants import FULL_ALLOWED_ROLES
 # from helpers.constants import PERMISSIONS
 from btqn_utils.decorators import has_role_decorator
 
@@ -46,7 +46,7 @@ class CreateProductMutation(DjangoCreateMutation):
 
     @classmethod
     @login_required
-    @has_role_decorator(['accountant', 'admin', 'director'])
+    @has_role_decorator(FULL_ALLOWED_ROLES)
     def mutate(cls, root, info, input):
         return super().mutate(root, info, input)
 
@@ -54,6 +54,12 @@ class CreateProductMutation(DjangoCreateMutation):
 class PatchProductMutation(DjangoPatchMutation):
     class Meta:
         model = Product
+
+    @classmethod
+    @login_required
+    @has_role_decorator(FULL_ALLOWED_ROLES)
+    def mutate(cls, root, info, id, input):
+        return super().mutate(root, info, id, input)
 
 
 class CreateCategoryMutation(DjangoCreateMutation):
@@ -63,7 +69,7 @@ class CreateCategoryMutation(DjangoCreateMutation):
 
     @classmethod
     @login_required
-    @has_role_decorator(['accountant', 'admin', 'director'])
+    @has_role_decorator(FULL_ALLOWED_ROLES)
     def mutate(cls, root, info, input):
         return super().mutate(root, info, input)
 
@@ -71,6 +77,12 @@ class CreateCategoryMutation(DjangoCreateMutation):
 class PatchCategoryMutation(DjangoPatchMutation):
     class Meta:
         model = Category
+
+    @classmethod
+    @login_required
+    @has_role_decorator(FULL_ALLOWED_ROLES)
+    def mutate(cls, root, info, id, input):
+        return super().mutate(root, info, id, input)
 
 
 class OrderNode(DjangoObjectType):

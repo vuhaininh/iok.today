@@ -1,5 +1,5 @@
 mutation PatchPassword {
-    patchUser(id: "VXNlck5vZGU6MTM=", input: {password: "gameover"}) {
+    patchUser(id: "VXNlck5vZGU6Mjk=", input: {password: "gameover"}) {
         user {
             email
             id
@@ -75,6 +75,7 @@ query AllCategories {
                 id
                 code
                 name
+                createdAt
             }
         }
     }
@@ -146,9 +147,9 @@ query GetCompanyCustomers {
                 own {
                     id
                     code
-                    bankAccount{
-                        edges{
-                            node{
+                    bankAccount {
+                        edges {
+                            node {
                                 accountNumber
                                 bankName
                                 branch
@@ -201,38 +202,67 @@ query GetSingleCompany {
     }
 }
 
-query GetCustomerBankAccount{
-    customerBankAccounts{
-        edges{
-            node{
+query GetCustomerBankAccount {
+    customerBankAccounts {
+        edges {
+            node {
                 owner
             }
         }
     }
 }
 
-query GetCustomers{
-    customers{
-        edges{
-            node{
+query GetCustomers {
+    customers {
+        edges {
+            node {
                 code
                 id
             }
         }
     }
 }
-mutation CreateCustomerBankAccount{
-    createCustomerBankAccount(input: {own: "Q3VzdG9tZXJOb2RlOjM=", accountNumber: "222312342423423", branch: "VIB Bai Chay", bankName: "VIB", owner: "Cong ty Aura"}){
-        customerBankAccount{
+
+mutation CreateCustomerBankAccount {
+    createCustomerBankAccount(input: {own: "Q3VzdG9tZXJOb2RlOjM=", accountNumber: "222312342423423", branch: "VIB Bai Chay", bankName: "VIB", owner: "Cong ty Aura"}) {
+        customerBankAccount {
             id
             owner
         }
     }
 }
-mutation CreateStaffProfile{
-    createStaffProfile(input: {firstName: "Test", lastName: "Game", mobile: "0983939333", address: "Bãi Cháy", position: "Nhân viên KD", user: "VXNlck5vZGU6MTM=", dob: "02-25-1989", liability: 12000000, liabilityLimit: 15000000}){
-        staffProfile{
+
+mutation CreateStaffProfile {
+    createStaffProfile(input: {firstName: "Test", lastName: "Game", mobile: "0983939333", address: "Bãi Cháy", position: "Nhân viên KD", dob: "2020-02-25", user: "VXNlck5vZGU6MTY=", liability: 12000000, liabilityLimit: 15000000}) {
+        staffProfile {
             id
+        }
+    }
+}
+
+mutation DeleteUser {
+    deleteUser(id: "") {
+        found
+        deletedId
+    }
+}
+
+mutation PatchStaffProfile {
+    patchStaffProfile(id: "U3RhZmZQcm9maWxlTm9kZTox", input: {firstName: "Michael"}) {
+        staffProfile {
+            id
+            firstName
+            lastName
+            position
+            dob
+            mobile
+            address
+            liability
+            liabilityLimit
+            user {
+                id
+                email
+            }
         }
     }
 }

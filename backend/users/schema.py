@@ -1,7 +1,7 @@
 from graphene import relay
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
-from graphene_django_cud.mutations import DjangoCreateMutation, DjangoPatchMutation
+from graphene_django_cud.mutations import DjangoCreateMutation, DjangoPatchMutation, DjangoDeleteMutation
 import graphene
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model, authenticate
@@ -9,6 +9,11 @@ from graphql_jwt.shortcuts import get_token,  create_refresh_token
 from graphene_django.forms.mutation import DjangoModelFormMutation
 from django.forms import ModelForm
 from django.contrib.auth.models import Group
+from graphql_jwt.decorators import login_required
+from graphql_relay.node.node import from_global_id
+from btqn_utils.validation import has_roles
+from helpers.constants import FULL_ALLOWED_ROLES
+from django.core.exceptions import PermissionDenied
 
 
 class GroupNode(DjangoObjectType):
@@ -77,15 +82,37 @@ class CreateUserMutation(DjangoCreateMutation):
         return make_password(value)
 
 
+class DeleteUserMutation(DjangoDeleteMutation):
+    class Meta:
+        model = get_user_model()
+
+    @classmethod
+    @login_required
+    def mutate(cls, root, info, id):
+        if(has_roles(info.context.user, FULL_ALLOWED_ROLES)):
+            return super().mutate(root, info, id)
+        else:
+            raise PermissionDenied("You cannot perform this action using current role")
+
+
 class PatchUserMutation(DjangoPatchMutation):
     class Meta:
         model = get_user_model()
         only_fields = ("email", "password")
-        login_required = True
 
     @classmethod
     def handle_password(cls, value, name, info):
         return make_password(value)
+
+    @classmethod
+    @login_required
+    def mutate(cls, root, info, id, input):
+        user_id = info.context.user.id
+        account_id = from_global_id(id)[1]
+        if(user_id == account_id or has_roles(info.context.user, FULL_ALLOWED_ROLES)):
+            return super().mutate(root, info, id, input)
+        else:
+            raise PermissionDenied("You cannot perform this action using current role")
 
 
 class Query(graphene.ObjectType):
@@ -103,5 +130,6 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.AbstractType):
     create_user = CreateUserMutation.Field()
     patch_user = PatchUserMutation.Field()
+    delete_user = DeleteUserMutation.Field()
     login = LogInMutation.Field()
     logout = LogOutMutation.Field()

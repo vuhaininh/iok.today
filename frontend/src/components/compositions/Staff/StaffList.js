@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Drawer from '@material-ui/core/Drawer';
 import CreateStaff from './CreateStaff';
+import { getUser, hasRoles } from '../../../utils';
 const getData = profiles => {
   return profiles.edges.map(({ node }) => {
     const {
@@ -47,6 +48,13 @@ class StaffList extends Component {
   }
   render() {
     const { staffProfiles, t } = this.props;
+    const user = JSON.parse(getUser());
+
+    const canCreate = hasRoles(user, [
+      'accountant',
+      'admin',
+      'director',
+    ]);
     const columns = [
       {
         title: t('staff.full-name'),
@@ -78,23 +86,30 @@ class StaffList extends Component {
 
     return (
       <Box className="ml3 mb3 mr2">
-        <Button
-          variant="outlined"
-          color="primary"
-          startIcon={<AddIcon />}
-          size="medium"
-          className="mb3"
-          onClick={() => this._toggleDrawer('right', true)}
-        >
-          {t('key-code.add-new')}
-        </Button>
-        <Drawer
-          anchor="right"
-          open={this.state.right}
-          onClose={() => this._toggleDrawer('right', false)}
-        >
-          <CreateStaff toggleDrawer={this._toggleDrawer.bind(this)} />
-        </Drawer>
+        {canCreate ? (
+          <div>
+            <Button
+              variant="outlined"
+              color="primary"
+              startIcon={<AddIcon />}
+              size="medium"
+              className="mb3"
+              onClick={() => this._toggleDrawer('right', true)}
+            >
+              {t('key-code.add-new')}
+            </Button>
+            <Drawer
+              anchor="right"
+              open={this.state.right}
+              onClose={() => this._toggleDrawer('right', false)}
+            >
+              <CreateStaff
+                toggleDrawer={this._toggleDrawer.bind(this)}
+              />
+            </Drawer>
+          </div>
+        ) : null}
+
         <Table
           columns={columns}
           data={getData(staffProfiles)}

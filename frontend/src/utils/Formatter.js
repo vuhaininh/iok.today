@@ -19,8 +19,8 @@ export const getDate = dateString => {
   const day = dateArr[0];
   const month = dateArr[1];
   const year = dateArr[2];
-  const validDate = `${month}/${day}/${year}`;
-  return new Date(validDate);
+  const validDate = `${year}-${month}-${day}`;
+  return validDate;
 };
 export const getLiabilityColor = (liability, liabilityLimit) => {
   const percent = (liability * 100) / liabilityLimit;

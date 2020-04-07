@@ -6,15 +6,13 @@ import ClearIcon from '@material-ui/icons/Clear';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
-import CreateInitUser from './CreateInitUserMutation';
-import CreateStaffProfile from './CreateStaffProfileMutation';
-import DeleteUser from './DeleteUserMutation';
+
 import { getErrorMessage } from '../../../utils/ErrorMessages';
 
 import { ErrorPopup } from '../../atoms/ErrorPopup';
 import { AppContext } from '../../../contexts/AppContext';
 import { withTranslation } from 'react-i18next';
-class CreateStaff extends Component {
+class EditStaffDetail extends Component {
   state = {
     email: '',
     password: '',
@@ -28,10 +26,34 @@ class CreateStaff extends Component {
     liabilityLimit: '',
     user: '',
   };
+  constructor(props) {
+    super(props);
+    const {
+      id,
+      firstName,
+      lastName,
+      position,
+      dob,
+      mobile,
+      address,
+      liability,
+      liabilityLimit,
+    } = this.props.staffProfile;
+    this.state = {
+      id,
+      firstName,
+      lastName,
+      mobile,
+      address,
+      position,
+      dob,
+      liability,
+      liabilityLimit,
+    };
+  }
   resetState() {
     this.setState({
-      email: '',
-      password: '',
+      id: '',
       firstName: '',
       lastName: '',
       mobile: '',
@@ -40,11 +62,11 @@ class CreateStaff extends Component {
       dob: '',
       liability: '',
       liabilityLimit: '',
-      user: '',
     });
   }
   render() {
     const { t, toggleDrawer } = this.props;
+
     return (
       <Box className="ma3">
         <ErrorPopup
@@ -61,33 +83,8 @@ class CreateStaff extends Component {
           variant="h6"
           display="block"
         >
-          {`${t('staff.add-new')}`}
+          {`${t('staff.edit')}`}
         </Typography>
-        <Grid container className="mb3">
-          <Grid item lg={3} className="mr3">
-            <TextField
-              label={t('staff.email')}
-              variant="outlined"
-              size="small"
-              value={this.state.email}
-              onChange={e => this.setState({ email: e.target.value })}
-              fullWidth
-            />
-          </Grid>
-          <Grid item lg={3}>
-            <TextField
-              label={t('settings.password')}
-              variant="outlined"
-              size="small"
-              type="password"
-              value={this.state.password}
-              onChange={e =>
-                this.setState({ password: e.target.value })
-              }
-              fullWidth
-            />
-          </Grid>
-        </Grid>
         <Grid container className="mb3">
           <Grid item lg={3} className="mr3">
             <TextField
@@ -196,7 +193,7 @@ class CreateStaff extends Component {
           startIcon={<SaveIcon />}
           size="medium"
           className="mb3 mr3"
-          onClick={() => this._createStaffProfile()}
+          onClick={() => this._editStaffProfile()}
         >
           {t('key-code.save')}
         </Button>
@@ -215,32 +212,7 @@ class CreateStaff extends Component {
       </Box>
     );
   }
-  _createStaffProfile = () => {
-    CreateInitUser(this.state, (response, errors) => {
-      const { t, toggleDrawer } = this.props;
-      if (errors != null) {
-        const message = getErrorMessage(t, errors);
-        this.context.setErrorMessage(message);
-        this.context.toggleErrorPopup(true);
-        this.forceUpdate();
-      } else {
-        const userId = response.createUser.user.id;
-        this.setState({ user: userId });
-        CreateStaffProfile(this.state, (response, errors) => {
-          if (errors != null) {
-            const message = getErrorMessage(t, errors);
-            this.context.setErrorMessage(message);
-            this.context.toggleErrorPopup(true);
-            DeleteUser(userId, () => {});
-            this.forceUpdate();
-          } else {
-            this.resetState();
-            toggleDrawer('right', false);
-          }
-        });
-      }
-    });
-  };
+  _editStaffProfile = () => {};
 }
-CreateStaff.contextType = AppContext;
-export default withTranslation()(CreateStaff);
+EditStaffDetail.contextType = AppContext;
+export default withTranslation()(EditStaffDetail);

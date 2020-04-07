@@ -262,6 +262,11 @@ type DeleteTagMutation {
   deletedId: ID
 }
 
+type DeleteUserMutation {
+  found: Boolean
+  deletedId: ID
+}
+
 type ErrorType {
   field: String!
   messages: [String!]!
@@ -375,6 +380,7 @@ type Mutation {
   patchCategory(id: ID!, input: PatchCategoryInput!): PatchCategoryMutation
   createUser(input: CreateUserInput!): CreateUserMutation
   patchUser(id: ID!, input: PatchUserInput!): PatchUserMutation
+  deleteUser(id: ID!): DeleteUserMutation
   login(input: LogInMutationInput!): LogInMutationPayload
   logout(token: String): LogOutMutation
   createTag(input: CreateTagInput!): CreateTagMutation

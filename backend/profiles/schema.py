@@ -17,12 +17,22 @@ class StaffProfileNode(DjangoObjectType):
         interfaces = (relay.Node,)
         filter_fields = ['id']
 
+    @classmethod
+    @login_required
+    def get_node(cls, info, id):
+        return models.StaffProfile.objects.get(pk=id)
+
 
 class IndividualCustomerProfileNode(DjangoObjectType):
     class Meta:
         model = models.IndividualCustomerProfile
         interfaces = (relay.Node,)
         filter_fields = ['id']
+
+    @classmethod
+    @login_required
+    def get_node(cls, info, id):
+        return models.IndividualCustomerProfile.objects.get(pk=id)
 
 
 class CompanyCustomerProfileNode(DjangoObjectType):
@@ -31,12 +41,22 @@ class CompanyCustomerProfileNode(DjangoObjectType):
         interfaces = (relay.Node,)
         filter_fields = ['id']
 
+    @classmethod
+    @login_required
+    def get_node(cls, info, id):
+        return models.CompanyCustomerProfile.objects.get(pk=id)
+
 
 class CustomerBankAccountNode(DjangoObjectType):
     class Meta:
         model = models.CustomerBankAccount
         interfaces = (relay.Node,)
         filter_fields = ['id']
+
+    @classmethod
+    @login_required
+    def get_node(cls, info, id):
+        return models.CustomerBankAccount.objects.get(pk=id)
 
 
 class CreateCustomerBankAccountMutation(DjangoCreateMutation):
@@ -60,6 +80,17 @@ class CreateStaffProfileMutation(DjangoCreateMutation):
     @has_role_decorator(FULL_ALLOWED_ROLES)
     def mutate(cls, root, info, input):
         return super().mutate(root, info, input)
+
+
+class PatchStaffProfileMutation(DjangoPatchMutation):
+    class Meta:
+        model = models.StaffProfile
+
+    @classmethod
+    @login_required
+    @has_role_decorator(FULL_ALLOWED_ROLES)
+    def mutate(cls, root, info, id, input):
+        return super().mutate(root, info, id, input)
 
 
 class Query(graphene.ObjectType):
@@ -87,7 +118,12 @@ class Query(graphene.ObjectType):
     customer_bank_account = relay.Node.Field(CustomerBankAccountNode)
     customer_bank_accounts = DjangoFilterConnectionField(CustomerBankAccountNode)
 
+    @login_required
+    def resolve_customer_bank_accounts(self, info, **kwargs):
+        return models.CustomerBankAccount.objects.all()
+
 
 class Mutation(graphene.AbstractType):
     create_customer_bank_account = CreateCustomerBankAccountMutation.Field()
     create_staff_profile = CreateStaffProfileMutation.Field()
+    patch_staff_profile = PatchStaffProfileMutation.Field()

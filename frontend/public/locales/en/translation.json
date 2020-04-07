@@ -1,149 +1,148 @@
 {
-  "language": "English",
-  "select-language": "Change Language",
-  "side-navigation": {
-    "overview": "Overview",
-    "products": "Products",
-    "customers": "Customers",
-    "staff": "Staff",
-    "finance": "Finance",
-    "settings": "Settings"
-  },
-  "login-title": "Follow our goals right now",
-  "errors": {
-    "invalid-login": "Please enter a correct email and password"
-  },
-  "login": {
-    "email": "Email",
-    "enter-email": "Enter your email",
-    "password": "Password",
-    "enter-password": "Enter your password",
-    "login": "Login",
-    "forgot-password": "Forgot password?"
-  },
-  "logout": "Logout",
-  "signup": {
-    "call": "Join Ikigai OKR today",
-    "signup": "Signup",
-    "register": "Register",
-    "first-name": "First name",
-    "last-name": "Last name",
-    "new-password": "New password"
-  },
-  "entry-message": {
-    "title": "We:",
-    "m1": "Enjoy a meaningful life",
-    "m2": "Make our dreams come true",
-    "m3": "Become more persistent and successful",
-    "m4": "Connect to people by objectives and key results",
-    "m5": "Share and celebrate happiness together"
-  },
-  "bottom": {
-    "terms-of-service": "Terms of Service",
-    "privacy": "Privacy",
-    "contact-us": "Contact Us"
-  },
-  "products": {
-    "product-list": "Product List",
-    "category": "Category",
-    "code": "Product Code",
-    "name": "Product Name",
-    "listed-price": "Listed Price",
-    "attributes": "Attributes"
-  },
-  "categories": {
-    "name": "Category Name",
-    "code": "Category Code",
-    "add": "Add New Category"
-  },
-  "table": {
-    "rows": "rows",
-    "search": "Search",
-    "first-page": "First Page",
-    "previous-page": "Previous Page",
-    "last-page": "Last Page",
-    "next-page": "Next Page"
-  },
-  "behaviours": {
-    "add-new": "Add New"
-  },
-  "error-messages": {
-    "duplicate-category-code": "Cannot create duplicate category code",
-    "no-permission": "You do not have permission to perform this action",
-    "no-blank": "Input value should not be empty",
-    "invalid-info": "Enter valid data",
-    "invalid-actions": "There is error caused by invalid action!",
-    "same-passwords": "Passwords should be the same"
-  },
-  "success-messages": {
-    "success": "Success!",
-    "success-operation": "Operation successfully completed"
-  },
-  "key-code": {
-    "code": "Code",
-    "group": "Group",
-    "name": "Name",
-    "updated-at": "Updated At",
-    "date": "Date",
-    "price": "Price",
-    "actions": "Actions",
-    "empty": "",
-    "edit": "Edit",
-    "ok": "Ok",
-    "update": "Update",
-    "add-new": "Add new",
-    "save": "Save",
-    "cancel": "Cancel"
-  },
-  "settings": {
-    "password": "Password",
-    "update-password": "Update password",
-    "confirm-password": "Confirm password"
-
-  },
-  "staff": {
-    "full-name": "Full name",
-    "first-name": "First name",
-    "last-name": "Last name",
-    "mobile": "Mobile",
-    "liability": "Liability",
-    "liability-limit": "Liability Limit",
-    "view-detail": "View detail",
-    "position": "Position",
-    "dob": "Date of birth",
-    "address": "Address",
-    "email": "Email",
-    "add-new": "Add new employee",
-    "code": "Code"
-  },
-  "customers": {
-    "individual-list": "Individual list",
-    "full-name": "Full name",
-    "mobile": "Mobile",
-    "view-detail": "View detail",
-    "position": "Position",
-    "dob": "Date of birth",
-    "address": "Address",
-    "email": "Email",
-    "code": "Code",
-    "individual": "Individual",
-    "company": "Company",
-    "company-list": "Company list"
-  },
-  "company": {
-    "name": "Name",
-    "address": "Address",
-    "tax-code": "Tax Code",
-    "liability": "Liability",
-    "liability-limit": "Liability Limit",
-    "representative": "Representative",
-    "position": "Position",
-    "code": "Code",
-    "bank-accounts": "Bank accounts",
-    "account-number": "Account number",
-    "bank-name": "Bank name",
-    "branch": "Branch",
-    "owner": "Owner"
-  }
-
+	"language": "English",
+	"select-language": "Change Language",
+	"side-navigation": {
+		"overview": "Overview",
+		"products": "Products",
+		"customers": "Customers",
+		"staff": "Staff",
+		"finance": "Finance",
+		"settings": "Settings"
+	},
+	"login-title": "Follow our goals right now",
+	"errors": {
+		"invalid-login": "Please enter a correct email and password"
+	},
+	"login": {
+		"email": "Email",
+		"enter-email": "Enter your email",
+		"password": "Password",
+		"enter-password": "Enter your password",
+		"login": "Login",
+		"forgot-password": "Forgot password?"
+	},
+	"logout": "Logout",
+	"signup": {
+		"call": "Join Ikigai OKR today",
+		"signup": "Signup",
+		"register": "Register",
+		"first-name": "First name",
+		"last-name": "Last name",
+		"new-password": "New password"
+	},
+	"entry-message": {
+		"title": "We:",
+		"m1": "Enjoy a meaningful life",
+		"m2": "Make our dreams come true",
+		"m3": "Become more persistent and successful",
+		"m4": "Connect to people by objectives and key results",
+		"m5": "Share and celebrate happiness together"
+	},
+	"bottom": {
+		"terms-of-service": "Terms of Service",
+		"privacy": "Privacy",
+		"contact-us": "Contact Us"
+	},
+	"products": {
+		"product-list": "Product List",
+		"category": "Category",
+		"code": "Product Code",
+		"name": "Product Name",
+		"listed-price": "Listed Price",
+		"attributes": "Attributes"
+	},
+	"categories": {
+		"name": "Category Name",
+		"code": "Category Code",
+		"add": "Add New Category"
+	},
+	"table": {
+		"rows": "rows",
+		"search": "Search",
+		"first-page": "First Page",
+		"previous-page": "Previous Page",
+		"last-page": "Last Page",
+		"next-page": "Next Page"
+	},
+	"behaviours": {
+		"add-new": "Add New"
+	},
+	"error-messages": {
+		"duplicate-category-code": "Cannot create duplicate category code",
+		"no-permission": "You do not have permission to perform this action",
+		"no-blank": "Input value should not be empty",
+		"invalid-info": "Enter valid data",
+		"invalid-actions": "There is error caused by invalid action!",
+		"same-passwords": "Passwords should be the same"
+	},
+	"success-messages": {
+		"success": "Success!",
+		"success-operation": "Operation successfully completed"
+	},
+	"key-code": {
+		"code": "Code",
+		"group": "Group",
+		"name": "Name",
+		"updated-at": "Updated At",
+		"date": "Date",
+		"price": "Price",
+		"actions": "Actions",
+		"empty": "",
+		"edit": "Edit",
+		"ok": "Ok",
+		"update": "Update",
+		"add-new": "Add new",
+		"save": "Save",
+		"cancel": "Cancel"
+	},
+	"settings": {
+		"password": "Password",
+		"update-password": "Update password",
+		"confirm-password": "Confirm password"
+	},
+	"staff": {
+		"full-name": "Full name",
+		"first-name": "First name",
+		"last-name": "Last name",
+		"mobile": "Mobile",
+		"liability": "Liability",
+		"liability-limit": "Liability Limit",
+		"view-detail": "View detail",
+		"position": "Position",
+		"dob": "Date of birth",
+		"address": "Address",
+		"email": "Email",
+		"add-new": "Add new employee",
+		"edit": "Edit information",
+		"code": "Code"
+	},
+	"customers": {
+		"individual-list": "Individual list",
+		"full-name": "Full name",
+		"mobile": "Mobile",
+		"view-detail": "View detail",
+		"position": "Position",
+		"dob": "Date of birth",
+		"address": "Address",
+		"email": "Email",
+		"code": "Code",
+		"individual": "Individual",
+		"company": "Company",
+		"company-list": "Company list"
+	},
+	"company": {
+		"name": "Name",
+		"address": "Address",
+		"tax-code": "Tax Code",
+		"liability": "Liability",
+		"liability-limit": "Liability Limit",
+		"representative": "Representative",
+		"position": "Position",
+		"code": "Code",
+		"bank-accounts": "Bank accounts",
+		"account-number": "Account number",
+		"bank-name": "Bank name",
+		"branch": "Branch",
+		"owner": "Owner"
+	}
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Table } from '../../atoms/Table';
-import { createFragmentContainer, graphql } from 'react-relay';
 import { withTranslation } from 'react-i18next';
 
 class CategoryList extends Component {
