@@ -86,7 +86,7 @@ class EditStaffDetail extends Component {
           {`${t('staff.edit')}`}
         </Typography>
         <Grid container className="mb3">
-          <Grid item lg={3} className="mr3">
+          <Grid item lg={5.5} className="mr3">
             <TextField
               label={t('staff.last-name')}
               variant="outlined"
@@ -98,7 +98,7 @@ class EditStaffDetail extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item lg={3}>
+          <Grid item lg={5.5}>
             <TextField
               label={t('staff.first-name')}
               variant="outlined"
@@ -112,7 +112,7 @@ class EditStaffDetail extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item lg={3} className="mr3">
+          <Grid item lg={5.5} className="mr3">
             <TextField
               label={t('staff.mobile')}
               variant="outlined"
@@ -124,7 +124,7 @@ class EditStaffDetail extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item lg={3}>
+          <Grid item lg={5.5}>
             <TextField
               label={t('staff.address')}
               variant="outlined"
@@ -138,7 +138,7 @@ class EditStaffDetail extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item lg={3} className="mr3">
+          <Grid item lg={5.5} className="mr3">
             <TextField
               label={t('staff.position')}
               variant="outlined"
@@ -150,7 +150,7 @@ class EditStaffDetail extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item lg={3}>
+          <Grid item lg={5.5}>
             <TextField
               label={t('staff.dob')}
               variant="outlined"
@@ -162,7 +162,7 @@ class EditStaffDetail extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item lg={3} className="mr3">
+          <Grid item lg={5.5} className="mr3">
             <TextField
               label={t('staff.liability')}
               variant="outlined"
@@ -174,7 +174,7 @@ class EditStaffDetail extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item lg={3}>
+          <Grid item lg={5.5}>
             <TextField
               label={t('staff.liability-limit')}
               variant="outlined"
