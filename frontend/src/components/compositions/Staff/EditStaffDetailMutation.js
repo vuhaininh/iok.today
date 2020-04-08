@@ -4,20 +4,22 @@ import { defaultError } from '../../../utils/ErrorMessages';
 const mutation = graphql`
   mutation EditStaffDetailMutation(
     $id: ID!
-    $input: PatchProductInput!
+    $input: PatchStaffProfileInput!
   ) {
-    patchProduct(id: $id, input: $input) {
-      product {
+    patchStaffProfile(id: $id, input: $input) {
+      staffProfile {
         id
-        code
-        name
-        listedPrice
-        attributes
-        updatedAt
-        category {
+        firstName
+        lastName
+        position
+        dob
+        mobile
+        address
+        liability
+        liabilityLimit
+        user {
           id
-          code
-          name
+          email
         }
       }
     }

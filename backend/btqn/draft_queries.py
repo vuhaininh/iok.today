@@ -248,7 +248,7 @@ mutation DeleteUser {
 }
 
 mutation PatchStaffProfile {
-    patchStaffProfile(id: "U3RhZmZQcm9maWxlTm9kZTox", input: {firstName: "Michael"}) {
+    patchStaffProfile(id: "U3RhZmZQcm9maWxlTm9kZTox", input: {firstName: "Mike"}) {
         staffProfile {
             id
             firstName

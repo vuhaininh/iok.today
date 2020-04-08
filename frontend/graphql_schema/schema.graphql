@@ -374,6 +374,7 @@ type LogOutMutation {
 type Mutation {
   createCustomerBankAccount(input: CreateCustomerBankAccountInput!): CreateCustomerBankAccountMutation
   createStaffProfile(input: CreateStaffProfileInput!): CreateStaffProfileMutation
+  patchStaffProfile(id: ID!, input: PatchStaffProfileInput!): PatchStaffProfileMutation
   createProduct(input: CreateProductInput!): CreateProductMutation
   patchProduct(id: ID!, input: PatchProductInput!): PatchProductMutation
   createCategory(input: CreateCategoryInput!): CreateCategoryMutation
@@ -534,6 +535,22 @@ input PatchProductInput {
 
 type PatchProductMutation {
   product: ProductNode
+}
+
+input PatchStaffProfileInput {
+  firstName: String
+  lastName: String
+  mobile: String
+  address: String
+  position: String
+  dob: Date
+  user: ID
+  liability: Float
+  liabilityLimit: Float
+}
+
+type PatchStaffProfileMutation {
+  staffProfile: StaffProfileNode
 }
 
 input PatchTagInput {

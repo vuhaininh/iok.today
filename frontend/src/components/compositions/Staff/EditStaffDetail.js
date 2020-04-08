@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 import { getErrorMessage } from '../../../utils/ErrorMessages';
-
+import EditStaffDetailMutation from './EditStaffDetailMutation';
 import { ErrorPopup } from '../../atoms/ErrorPopup';
 import { AppContext } from '../../../contexts/AppContext';
 import { withTranslation } from 'react-i18next';
@@ -86,7 +86,7 @@ class EditStaffDetail extends Component {
           {`${t('staff.edit')}`}
         </Typography>
         <Grid container className="mb3">
-          <Grid item lg={5.5} className="mr3">
+          <Grid item lg={5} className="mr3">
             <TextField
               label={t('staff.last-name')}
               variant="outlined"
@@ -98,7 +98,7 @@ class EditStaffDetail extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item lg={5.5}>
+          <Grid item lg={5}>
             <TextField
               label={t('staff.first-name')}
               variant="outlined"
@@ -112,7 +112,7 @@ class EditStaffDetail extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item lg={5.5} className="mr3">
+          <Grid item lg={5} className="mr3">
             <TextField
               label={t('staff.mobile')}
               variant="outlined"
@@ -124,7 +124,7 @@ class EditStaffDetail extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item lg={5.5}>
+          <Grid item lg={5}>
             <TextField
               label={t('staff.address')}
               variant="outlined"
@@ -138,7 +138,7 @@ class EditStaffDetail extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item lg={5.5} className="mr3">
+          <Grid item lg={5} className="mr3">
             <TextField
               label={t('staff.position')}
               variant="outlined"
@@ -150,7 +150,7 @@ class EditStaffDetail extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item lg={5.5}>
+          <Grid item lg={5}>
             <TextField
               label={t('staff.dob')}
               variant="outlined"
@@ -162,7 +162,7 @@ class EditStaffDetail extends Component {
           </Grid>
         </Grid>
         <Grid container className="mb3">
-          <Grid item lg={5.5} className="mr3">
+          <Grid item lg={5} className="mr3">
             <TextField
               label={t('staff.liability')}
               variant="outlined"
@@ -174,7 +174,7 @@ class EditStaffDetail extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item lg={5.5}>
+          <Grid item lg={5}>
             <TextField
               label={t('staff.liability-limit')}
               variant="outlined"
@@ -212,7 +212,23 @@ class EditStaffDetail extends Component {
       </Box>
     );
   }
-  _editStaffProfile = () => {};
+  _editStaffProfile = () => {
+    const { t, toggleDrawer } = this.props;
+    const id = this.state.id;
+    let newData = this.state;
+    delete newData.id;
+    EditStaffDetailMutation(id, newData, errors => {
+      if (errors != null) {
+        const message = getErrorMessage(t, errors);
+        this.context.setErrorMessage(message);
+        this.context.toggleErrorPopup(true);
+        this.forceUpdate();
+      } else {
+        this.resetState();
+        toggleDrawer('right', false);
+      }
+    });
+  };
 }
 EditStaffDetail.contextType = AppContext;
 export default withTranslation()(EditStaffDetail);
