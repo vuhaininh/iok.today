@@ -128,7 +128,8 @@
 		"code": "Code",
 		"individual": "Individual",
 		"company": "Company",
-		"company-list": "Company list"
+		"company-list": "Company list",
+		"add-new": "Add new customer"
 	},
 	"company": {
 		"name": "Name",

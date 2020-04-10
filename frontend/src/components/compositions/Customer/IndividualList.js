@@ -5,7 +5,11 @@ import { withTranslation } from 'react-i18next';
 import { Table } from '../../atoms/Table';
 import { withRouter } from 'found';
 import { dateFormat } from '../../../utils/Formatter';
-
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import Drawer from '@material-ui/core/Drawer';
+import CreateIndividualCustomer from './CreateIndividualCustomer';
+import { getUser, hasRoles } from '../../../utils';
 const getData = profiles => {
   return profiles.edges.map(({ node }) => {
     const {
@@ -34,8 +38,20 @@ const getData = profiles => {
 };
 
 class IndividualList extends Component {
+  state = { right: false };
+  _toggleDrawer(side, open) {
+    this.setState({ ...this.state, [side]: open });
+  }
   render() {
     const { individualCustomerProfiles, t } = this.props;
+    const user = JSON.parse(getUser());
+
+    const canCreate = hasRoles(user, [
+      'accountant',
+      'admin',
+      'director',
+    ]);
+
     const columns = [
       {
         title: t('customers.code'),
@@ -65,6 +81,29 @@ class IndividualList extends Component {
     ];
     return (
       <Box>
+        {canCreate ? (
+          <div>
+            <Button
+              variant="outlined"
+              color="primary"
+              startIcon={<AddIcon />}
+              size="medium"
+              className="mb3 mt3"
+              onClick={() => this._toggleDrawer('right', true)}
+            >
+              {t('key-code.add-new')}
+            </Button>
+            <Drawer
+              anchor="right"
+              open={this.state.right}
+              onClose={() => this._toggleDrawer('right', false)}
+            >
+              <CreateIndividualCustomer
+                toggleDrawer={this._toggleDrawer.bind(this)}
+              />
+            </Drawer>
+          </div>
+        ) : null}
         <Table
           columns={columns}
           data={getData(individualCustomerProfiles)}

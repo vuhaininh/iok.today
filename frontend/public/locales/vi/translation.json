@@ -128,7 +128,8 @@
     "code": "Mã",
     "individual": "Cá nhân",
     "company": "Công ty",
-    "company-list": "Danh sách công ty"
+    "company-list": "Danh sách công ty",
+    "add-new": "Thêm khách hàng"
   },
   "company": {
     "name": "Tên",
