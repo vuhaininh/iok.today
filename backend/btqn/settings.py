@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'products',
     'rolepermissions',
     'profiles',
-    'customers'
+    'customers',
+    'goals'
 ]
 
 ROLEPERMISSIONS_MODULE = 'btqn.roles'

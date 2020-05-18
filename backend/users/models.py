@@ -40,3 +40,16 @@ class User(AbstractBaseUser, PermissionsMixin):
             super(User, self).save(*args, **kwargs)  # Call the "real" save() method.
         except ValidationError as e:
             raise e
+
+
+class RelationShipType(models.Model):
+    type = models.CharField(max_length=30)
+
+
+class UserRelationShip(models.Model):
+    relating_user_id = models.ForeignKey(
+        User, related_name='relating_user', on_delete=models.CASCADE)
+    related_user_id = models.ForeignKey(
+        User, related_name='related_user', on_delete=models.CASCADE)
+    relationship_type = models.ForeignKey(
+        RelationShipType, related_name='relationship_type', on_delete=models.CASCADE)
